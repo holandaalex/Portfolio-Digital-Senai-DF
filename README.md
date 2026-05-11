@@ -345,9 +345,9 @@ F12 → Console tab
 
 ### Entre em Contato
 
-- **Email:** [seu-email@senai.br]
-- **GitHub Issues:** [Criar issue aqui]
-- **Slack:** [Canal do projeto]
+- **Email:** [contato@alexholanda.com.br]
+- **GitHub Issues:** [*]
+- **Slack:** [*]
 
 ### FAQ
 
