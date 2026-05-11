@@ -1,0 +1,221 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  /* Fonte principal do projeto. Caso Neo Sans Pro esteja instalada no sistema,
+     ela será usada. Caso contrário, o fallback padrão é Arial / Helvetica / sans-serif. */
+
+  @font-face {
+    font-family: "Neo Sans Pro";
+    src:
+      local("Neo Sans Pro"),
+      local("NeoSansPro"),
+      url("./assets/fonts/NeoSansPro-Regular.woff2") format("woff2"),
+      url("./assets/fonts/NeoSansPro-Regular.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Neo Sans Pro";
+    src:
+      local("Neo Sans Pro Bold"),
+      local("NeoSansPro-Bold"),
+      url("./assets/fonts/NeoSansPro-Bold.woff2") format("woff2"),
+      url("./assets/fonts/NeoSansPro-Bold.woff") format("woff");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  :root {
+    --background: 0 0% 97%;
+    --foreground: 220 18% 23%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 18% 23%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 18% 23%;
+
+    --primary: 218 78% 39%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 31% 88%;
+    --secondary-foreground: 220 18% 23%;
+
+    --muted: 210 20% 93%;
+    --muted-foreground: 220 12% 41%;
+
+    --accent: 328 71% 64%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 210 18% 83%;
+    --input: 0 0% 100%;
+    --ring: 218 78% 39%;
+
+    --radius: 0.5rem;
+
+    --hero-pink: 328 71% 64%;
+    --hero-outline: 219 76% 43%;
+    --brand-strip: 219 61% 38%;
+    --areas-surface: 202 26% 82%;
+    --contact-overlay: 214 14% 27% / 0.76;
+    --soft-shadow: 220 15% 35% / 0.18;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Neo Sans Pro", Arial, Helvetica, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Neo Sans Pro", Arial, Helvetica, sans-serif;
+  }
+}
+
+@layer components {
+  .site-shell {
+    @apply min-h-screen bg-background text-foreground;
+  }
+
+  .section-container {
+    @apply mx-auto w-full max-w-[1120px] px-4 md:px-8;
+  }
+
+  .senai-logo {
+    @apply h-auto w-[110px] object-contain md:w-[128px];
+  }
+
+  .nav-link-senai {
+    @apply text-[12px] font-bold uppercase tracking-[0.18em] text-foreground/75 transition-colors hover:text-primary;
+  }
+
+  .hero-panel {
+    background-color: hsl(var(--hero-pink));
+  }
+
+  .brand-strip {
+    background-color: hsl(var(--brand-strip));
+  }
+
+  .areas-surface {
+    background-color: hsl(var(--areas-surface));
+  }
+
+  .soft-card {
+    @apply rounded-[8px] border border-border bg-card shadow-[0_10px_24px_hsl(var(--soft-shadow))];
+  }
+
+  .course-stage-card {
+    @apply soft-card flex min-h-[190px] flex-col items-center justify-between p-4 text-center;
+  }
+
+  .stat-item {
+    @apply flex flex-col items-center justify-center gap-2 border-l border-primary-foreground/20 px-4 py-6 text-center first:border-l-0;
+  }
+
+  .area-card {
+    @apply soft-card overflow-hidden bg-card;
+  }
+
+  .area-thumb {
+    @apply h-[148px] w-full object-cover;
+  }
+
+  .form-field-senai {
+    @apply h-12 rounded-sm border-0 bg-background px-4 text-sm text-foreground shadow-none ring-0 placeholder:text-foreground/55 focus-visible:ring-2 focus-visible:ring-background;
+  }
+
+  .textarea-senai {
+    @apply min-h-[72px] rounded-sm border-0 bg-background px-4 py-3 text-sm text-foreground placeholder:text-foreground/55 focus-visible:ring-2 focus-visible:ring-background;
+  }
+
+  .btn-senai-primary {
+    @apply inline-flex h-11 items-center justify-center rounded-sm bg-primary px-6 text-sm font-bold uppercase tracking-[0.08em] text-primary-foreground transition-opacity hover:opacity-90;
+  }
+
+  .btn-senai-accent {
+    @apply inline-flex h-11 items-center justify-center rounded-sm bg-accent px-6 text-sm font-bold uppercase tracking-[0.08em] text-accent-foreground transition-opacity hover:opacity-90;
+  }
+
+  .contact-overlay {
+    background-color: hsl(var(--contact-overlay));
+  }
+}
