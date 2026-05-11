@@ -362,6 +362,6 @@ R: Usar React Query com endpoints customizados.
 
 ---
 
-**Desenvolvido por Alexsander Barreto - FIBRA/SENAI**
+**Desenvolvido por Alexsander Barreto - FIBRA/SENAI-DF**
 
 Documentacao atualizada: 05/05/2026
