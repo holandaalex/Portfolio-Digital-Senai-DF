@@ -181,13 +181,7 @@ const Index = () => {
     <main className="site-shell">
       <header className="border-b border-transparent bg-background">
         <div className="section-container flex h-[72px] items-center justify-between gap-4 md:h-[88px]">
-          <img
-            src={senaiLogo}
-            alt="Logo SENAI"
-            className="senai-logo"
-            width={128}
-            height={48}
-          />
+          <img src={senaiLogo} alt="Logo SENAI" className="senai-logo" />
 
           <nav
             className="hidden items-center gap-8 lg:gap-10 md:flex"
@@ -218,26 +212,24 @@ const Index = () => {
           {/* Menu Mobile - Drawer */}
           <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <SheetOverlay />
-            <SheetContent side="left" className="w-full">
-              <div className="flex h-full flex-col gap-4 pt-6">
-                <div className="flex items-center justify-between border-b pb-4">
-                  <img
-                    src={senaiLogo}
-                    alt="Logo SENAI"
-                    width={100}
-                    height={36}
-                  />
+            <SheetContent side="left" className="w-full max-w-[320px] p-6">
+              <div className="flex h-full flex-col gap-6">
+                <div className="flex items-center justify-between border-b border-border pb-4">
+                  <div>
+                    <h2 className="text-lg font-semibold text-foreground">Menu</h2>
+                    <p className="text-sm text-muted-foreground">Selecione uma área ou curso</p>
+                  </div>
                   <SheetClose asChild>
-                    <Button variant="ghost" size="icon">
+                    <Button variant="ghost" size="icon" aria-label="Fechar menu">
                       <X className="h-5 w-5" />
                     </Button>
                   </SheetClose>
                 </div>
-                <nav className="flex flex-col gap-4">
+                <nav className="flex flex-col gap-3">
                   <SheetClose asChild>
                     <a
                       href="#areas"
-                      className="text-lg font-medium text-foreground hover:text-primary"
+                      className="rounded-xl px-4 py-4 text-base font-semibold text-foreground transition hover:bg-foreground/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground"
                     >
                       Áreas
                     </a>
@@ -245,7 +237,7 @@ const Index = () => {
                   <SheetClose asChild>
                     <a
                       href="#cursos"
-                      className="text-lg font-medium text-foreground hover:text-primary"
+                      className="rounded-xl px-4 py-4 text-base font-semibold text-foreground transition hover:bg-foreground/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground"
                     >
                       Cursos
                     </a>
@@ -253,7 +245,7 @@ const Index = () => {
                   <SheetClose asChild>
                     <a
                       href="#contato"
-                      className="text-lg font-medium text-foreground hover:text-primary"
+                      className="rounded-xl px-4 py-4 text-base font-semibold text-foreground transition hover:bg-foreground/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground"
                     >
                       Contatos
                     </a>
@@ -315,14 +307,11 @@ const Index = () => {
         className="section-container grid gap-8 py-12 md:grid-cols-[0.92fr_1.08fr] md:items-center md:gap-10 md:py-14"
       >
         <div className="max-w-[430px] flex flex-col items-start">
-          <div className="mb-5 overflow-hidden w-[154px]">
+          <div className="mb-5">
             <img
               src={senaiLogo}
               alt="Logo SENAI"
-              className="relative self-start object-contain"
-              style={{ left: "-37px", width: "154px", height: "58px" }}
-              width={154}
-              height={58}
+              className="senai-logo"
               loading="lazy"
             />
           </div>
