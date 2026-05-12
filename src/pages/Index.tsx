@@ -32,7 +32,9 @@ import senaiLogo from "@/assets/senai-logo.png";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 // Banner completo da seção "Produção Alimentícia" — substitui o layout dividido (faixa rosa + foto)
-import heroFoodBanner from "@/assets/hero/producao-alimenticia-banner.jpg";
+import heroFoodBanner from "@/assets/areas/SLIDERS_ProduçãoIndustrial.jpg";
+import heroSecurityBanner from "@/assets/areas/SLIDERS_Segurança.jpg";
+import heroEnergyBanner from "@/assets/areas/SLIDERS_SistemasEnergia.jpg";
 import heroWorkers from "@/assets/hero/trabalhadores.png";
 import contactHero from "@/assets/hero/contato.jpg";
 import areaEletronica from "@/assets/areas/eletronica.jpg";
@@ -152,7 +154,7 @@ const Index = () => {
    * Avança automaticamente a cada 3 segundos entre 3 slides.
    * Por enquanto utiliza a mesma imagem nos três slots, conforme solicitado.
    */
-  const heroSlides = [heroFoodBanner, heroFoodBanner, heroFoodBanner];
+  const heroSlides = [heroFoodBanner, heroSecurityBanner, heroEnergyBanner];
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
@@ -312,16 +314,18 @@ const Index = () => {
         id="cursos"
         className="section-container grid gap-8 py-12 md:grid-cols-[0.92fr_1.08fr] md:items-center md:gap-10 md:py-14"
       >
-        <div className="max-w-[430px]">
-          <img
-            src={senaiLogo}
-            alt="Logo SENAI"
-            className="mb-5 senai-logo"
-            width={128}
-            height={48}
-            loading="lazy"
-          />
-          <p className="text-[13px] leading-6 text-muted-foreground sm:text-sm">
+        <div className="max-w-[430px] flex flex-col items-start">
+          <div className="mb-5 overflow-hidden w-[154px]">
+            <img
+              src={senaiLogo}
+              alt="Logo SENAI"
+              className="relative left-[-37px] self-start senai-logo"
+              width={154}
+              height={58}
+              loading="lazy"
+            />
+          </div>
+          <p className="w-full text-left text-[13px] leading-6 text-muted-foreground sm:text-sm">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam
             nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
             volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
