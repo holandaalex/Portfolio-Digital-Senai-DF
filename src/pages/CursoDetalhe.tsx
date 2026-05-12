@@ -73,8 +73,7 @@ const CursoDetalhe = () => {
               src={senaiLogo}
               alt="Logo SENAI"
               className="senai-logo"
-              width={128}
-              height={48}
+              loading="lazy"
             />
           </Link>
           <nav

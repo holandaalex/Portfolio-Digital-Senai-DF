@@ -57,7 +57,7 @@ const PoliticaPrivacidade = () => (
     <header className="border-b border-border bg-background">
       <div className="section-container flex h-[72px] items-center justify-between">
         <Link to="/">
-          <img src={senaiLogo} alt="Logo SENAI" className="senai-logo" width={128} height={48} />
+          <img src={senaiLogo} alt="Logo SENAI" className="senai-logo" loading="lazy" />
         </Link>
         <Link to="/" className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">
           <ArrowLeft className="h-4 w-4" /> Voltar

@@ -1,6 +1,6 @@
 import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 import { Link } from "react-router-dom";
-import senaiLogo from "@/assets/senai-logo.png";
+import senaiLogoFooter from "@/assets/areas/footer_senai_branco.png";
 
 // Developer - Alexsander Barreto - FIBRA
 
@@ -14,7 +14,7 @@ const socials = [
 const Footer = () => (
   <footer className="border-t border-border bg-primary text-primary-foreground">
     <div className="section-container flex flex-col items-center gap-6 py-8 md:flex-row md:justify-between">
-      <img src={senaiLogo} alt="Logo SENAI" className="h-10 w-auto bg-primary-foreground/95 rounded px-2 py-1" width={128} height={40} loading="lazy" />
+      <img src={senaiLogoFooter} alt="Logo SENAI" className="senai-logo bg-primary-foreground/95 rounded px-2 py-1" loading="lazy" />
 
       <nav aria-label="Redes sociais" className="flex items-center gap-4">
         {socials.map(({ Icon, href, label }) => (

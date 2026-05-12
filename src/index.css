@@ -160,7 +160,7 @@ All colors MUST be HSL.
   }
 
   .senai-logo {
-    @apply h-auto w-[110px] object-contain md:w-[128px];
+    @apply h-auto w-[154px] object-contain;
   }
 
   .nav-link-senai {
