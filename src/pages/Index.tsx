@@ -319,7 +319,8 @@ const Index = () => {
             <img
               src={senaiLogo}
               alt="Logo SENAI"
-              className="relative left-[-37px] self-start senai-logo"
+              className="relative self-start object-contain"
+              style={{ left: "-37px", width: "154px", height: "58px" }}
               width={154}
               height={58}
               loading="lazy"

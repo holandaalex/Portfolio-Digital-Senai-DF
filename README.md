@@ -346,8 +346,13 @@ F12 → Console tab
 ### Entre em Contato
 
 - **Email:** [contato@alexholanda.com.br]
+<<<<<<< HEAD
 - **GitHub Issues:** [Criar issue aqui]
 - **Slack:** [Canal do projeto]
+=======
+- **GitHub Issues:** [*]
+- **Slack:** [*]
+>>>>>>> 754a07559dc89256f3e651d2567431003bb30da5
 
 ### FAQ
 
