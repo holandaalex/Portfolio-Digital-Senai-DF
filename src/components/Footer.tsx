@@ -1,83 +1,66 @@
 import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 import { Link } from "react-router-dom";
-import senaiLogoFooter from "@/assets/areas/senai_branco.png";
+import senaiLogoFooter from "@/assets/senai-logo-footer.png";
 
 // Developer - Alexsander Barreto - FIBRA
 
 const socials = [
   {
     Icon: Facebook,
-    href: "https://www.facebook.com/sistemafibra",
+    href: "https://www.facebook.com/fibradf?ref=tn_tnmn",
     label: "Facebook",
   },
   {
     Icon: Instagram,
-    href: "https://www.instagram.com/sistemafibra",
+    href: "https://www.instagram.com/fibra_df/",
     label: "Instagram",
   },
   {
-    Icon: Linkedin,
-    href: "https://www.linkedin.com/company/sistema-fibra",
-    label: "LinkedIn",
+    Icon: Youtube,
+    href: "https://www.youtube.com/channel/UChcNrZWnl5MH6RX84ORcreQ",
+    label: "YouTube",
   },
   {
-    Icon: Youtube,
-    href: "https://www.youtube.com/@SistemaFibra",
-    label: "YouTube",
+    Icon: Linkedin,
+    href: "https://www.linkedin.com/company/sistemafibra/posts/?feedView=all",
+    label: "LinkedIn",
   },
 ];
 
 const Footer = () => (
   <footer className="border-t border-border bg-primary text-primary-foreground">
-    <div className="section-container py-12">
-      {/* Seção principal com logo e navegação */}
-      <div className="grid gap-8 md:grid-cols-3 lg:grid-cols-4">
-        {/* Logo e descrição */}
-        <div className="lg:col-span-1">
-          <img
-            src={senaiLogoFooter}
-            alt="Logo SENAI"
-            className="senai-logo bg-primary-foreground/95 rounded px-2 py-1 mb-4"
-            loading="lazy"
-          />
-          <p className="text-sm text-primary-foreground/80 leading-relaxed">
-            Centro de excelência em educação profissional e tecnológica, formando profissionais qualificados para o mercado de trabalho.
-          </p>
-        </div>
+    <div className="section-container flex flex-col items-center text-center gap-8 py-12">
+      <img
+        src={senaiLogoFooter}
+        alt="Logo SENAI"
+        className="senai-logo bg-primary-foreground/95 rounded px-2 py-1"
+        loading="lazy"
+      />
 
-        {/* Navegação rápida */}
-        <div className="lg:col-span-1">
-          <h3 className="font-semibold text-primary-foreground mb-4">Navegação</h3>
-          <nav className="flex flex-col gap-2">
-            <a href="#areas" className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-              Áreas Tecnológicas
-            </a>
-            <a href="#cursos" className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-              Cursos
-            </a>
-            <a href="#contato" className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-              Contato
-            </a>
-            <Link to="/politica-de-privacidade" className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-              Política de Privacidade
-            </Link>
-          </nav>
-        </div>
+      <div className="max-w-[760px] text-sm text-primary-foreground/80 leading-7">
+        <p>
+          Centro de excelência em educação profissional e tecnológica, formando profissionais qualificados para o mercado de trabalho.
+        </p>
+      </div>
 
-        {/* Informações de contato */}
-        <div className="lg:col-span-1">
-          <h3 className="font-semibold text-primary-foreground mb-4">Contato</h3>
-          <div className="space-y-2 text-sm text-primary-foreground/80">
-            <p>📍 Brasília - DF</p>
-            <p>📞 (61) 3321-0000</p>
-            <p>✉️ contato@senai.br</p>
+      <div className="grid w-full gap-8 md:grid-cols-2 lg:grid-cols-[1fr_0.9fr]">
+        <div className="flex flex-col items-center gap-4">
+          <div className="space-y-2">
+            <p className="font-semibold text-primary-foreground">Endereço</p>
+            <p>SIA Trecho 3, Lote 225 Ed. Sede FIBRA</p>
+            <p>Brasília - DF - CEP: 71200-030</p>
+          </div>
+
+          <div className="space-y-2">
+            <p className="font-semibold text-primary-foreground">SAC Sistema Fibra</p>
+            <p>(61) 4042 6565</p>
+            <p>Horário de Atendimento:</p>
+            <p>De Segunda a Sexta-feira / das 8h às 18:30h</p>
           </div>
         </div>
 
-        {/* Redes sociais */}
-        <div className="lg:col-span-1">
-          <h3 className="font-semibold text-primary-foreground mb-4">Redes Sociais</h3>
-          <nav aria-label="Redes sociais" className="flex items-center gap-3">
+        <div className="flex flex-col items-center gap-6">
+          <div className="grid grid-cols-4 gap-3">
             {socials.map(({ Icon, href, label }) => (
               <a
                 key={label}
@@ -85,23 +68,36 @@ const Footer = () => (
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-foreground/10 transition-all hover:bg-primary-foreground/25 hover:scale-110"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-foreground/10 text-primary-foreground transition-all hover:bg-primary-foreground/25 hover:scale-110"
               >
                 <Icon className="h-5 w-5" />
               </a>
             ))}
-          </nav>
+          </div>
+
+          <div className="space-y-2 text-sm text-primary-foreground/80">
+            <p className="font-semibold text-primary-foreground">Links de redes sociais</p>
+            <a className="block hover:underline" href="https://www.facebook.com/fibradf?ref=tn_tnmn" target="_blank" rel="noopener noreferrer">
+              facebook.com/fibradf?ref=tn_tnmn
+            </a>
+            <a className="block hover:underline" href="https://www.instagram.com/fibra_df/" target="_blank" rel="noopener noreferrer">
+              instagram.com/fibra_df
+            </a>
+            <a className="block hover:underline" href="https://www.youtube.com/channel/UChcNrZWnl5MH6RX84ORcreQ" target="_blank" rel="noopener noreferrer">
+              youtube.com/channel/UChcNrZWnl5MH6RX84ORcreQ
+            </a>
+            <a className="block hover:underline" href="https://www.linkedin.com/company/sistemafibra/posts/?feedView=all" target="_blank" rel="noopener noreferrer">
+              linkedin.com/company/sistemafibra/posts/?feedView=all
+            </a>
+            <a className="block hover:underline" href="https://www.flickr.com/photos/132833613@N03/" target="_blank" rel="noopener noreferrer">
+              flickr.com/photos/132833613@N03
+            </a>
+          </div>
         </div>
       </div>
 
-      {/* Rodapé inferior */}
-      <div className="border-t border-primary-foreground/20 mt-8 pt-6 flex flex-col items-center gap-2 text-center">
-        <p className="text-sm text-primary-foreground/60">
-          Copyright ©2026 — SENAI/FIBRA. Todos os direitos reservados.
-        </p>
-        <p className="text-xs text-primary-foreground/40">
-          Desenvolvido com ❤️ para a formação profissional brasileira
-        </p>
+      <div className="border-t border-primary-foreground/20 pt-6 text-sm text-primary-foreground/60">
+        <p>Copyright ©2026 — SENAI/FIBRA. Todos os direitos reservados.</p>
       </div>
     </div>
   </footer>
