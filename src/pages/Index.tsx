@@ -14,7 +14,7 @@ import {
   ShieldCheck,
   Users,
 } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
@@ -26,6 +26,7 @@ import senaiLogoHeader from "@/assets/senai-logo-header.png";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import MobileMenu from "@/components/MobileMenu";
+import CountUpNumber from "@/components/CountUpNumber";
 // Banner completo da seção "Produção Alimentícia" — substitui o layout dividido (faixa rosa + foto)
 import heroFoodBanner from "@/assets/areas/SLIDERS_ProduçãoIndustrial.jpg";
 import heroSecurityBanner from "@/assets/areas/SLIDERS_Segurança.jpg";
@@ -57,10 +58,10 @@ const stages = [
 ];
 
 const stats = [
-  { value: "25+", label: "Anos formando talentos", icon: Users },
-  { value: "6.500+", label: "Turmas concluídas", icon: GraduationCap },
-  { value: "100+", label: "Instrutores especialistas", icon: HardHat },
-  { value: "6.561+", label: "Alunos preparados", icon: ShieldCheck },
+  { value: 25, label: "Anos formando talentos", icon: Users },
+  { value: 6500, label: "Turmas concluídas", icon: GraduationCap },
+  { value: 100, label: "Instrutores especialistas", icon: HardHat },
+  { value: 6561, label: "Alunos preparados", icon: ShieldCheck },
 ];
 
 const areas = [
@@ -187,6 +188,28 @@ const Index = () => {
    */
   const [searchTerm, setSearchTerm] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const statsRef = useRef<HTMLElement | null>(null);
+  const [statsStarted, setStatsStarted] = useState(false);
+
+  useEffect(() => {
+    const section = statsRef.current;
+    if (!section || statsStarted) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStatsStarted(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.35 },
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, [statsStarted]);
+
   const filteredAreas = useMemo(() => {
     const term = searchTerm.trim().toLowerCase();
     if (!term) return areas;
@@ -337,13 +360,17 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="brand-strip">
+      <section ref={statsRef} className="brand-strip">
         <div className="section-container grid grid-cols-2 gap-y-2 md:grid-cols-4">
           {stats.map(({ value, label, icon: Icon }) => (
             <div key={label} className="stat-item">
               <Icon className="h-7 w-7 text-primary-foreground" />
               <strong className="text-[1.6rem] font-black leading-none text-primary-foreground sm:text-[2rem]">
-                {value}
+                <CountUpNumber
+                  active={statsStarted}
+                  end={value}
+                  suffix="+"
+                />
               </strong>
               <span className="text-[11px] font-semibold text-primary-foreground/90 sm:text-[12px]">
                 {label}
@@ -432,15 +459,11 @@ const Index = () => {
         </p>
       </section>
 
-      <section id="contato" className="relative overflow-hidden">
-        <img
-          src={contactHero}
-          alt="Profissionais industriais em ambiente corporativo"
-          className="absolute inset-0 h-full w-full object-cover"
-          width={1280}
-          height={800}
-          loading="lazy"
-        />
+      <section
+        id="contato"
+        className="contact-parallax relative overflow-hidden"
+        style={{ backgroundImage: `url(${contactHero})` }}
+      >
         <div className="contact-overlay absolute inset-0" />
         <div className="section-container relative grid gap-8 py-12 md:grid-cols-[1fr_0.9fr] md:items-center md:gap-10 md:py-16">
           <div className="max-w-[430px] text-primary-foreground">

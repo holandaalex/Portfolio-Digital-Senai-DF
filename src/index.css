@@ -222,4 +222,14 @@ All colors MUST be HSL.
   .contact-overlay {
     background-color: hsl(var(--contact-overlay));
   }
+
+  .contact-parallax {
+    @apply bg-cover bg-center bg-no-repeat;
+  }
+
+  @media (min-width: 768px) {
+    .contact-parallax {
+      background-attachment: fixed;
+    }
+  }
 }

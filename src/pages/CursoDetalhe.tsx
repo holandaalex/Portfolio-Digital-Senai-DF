@@ -8,7 +8,7 @@ import {
   Clock3,
   Menu,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
@@ -21,6 +21,7 @@ import { mockCourses } from "@/pages/Cursos";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import MobileMenu from "@/components/MobileMenu";
+import CountUpNumber from "@/components/CountUpNumber";
 
 // Developer - Alexsander Barreto - FIBRA
 
@@ -42,10 +43,10 @@ const accordionSections = [
 
 /** Estatísticas institucionais exibidas na faixa azul. */
 const stats = [
-  { value: "25+", label: "Anos de experiência" },
-  { value: "6.500+", label: "Turmas formadas" },
-  { value: "100+", label: "Especialistas em sala" },
-  { value: "6.561+", label: "Alunos em evolução" },
+  { value: 25, label: "Anos de experiência" },
+  { value: 6500, label: "Turmas formadas" },
+  { value: 100, label: "Especialistas em sala" },
+  { value: 6561, label: "Alunos em evolução" },
 ];
 
 const CursoDetalhe = () => {
@@ -56,6 +57,27 @@ const CursoDetalhe = () => {
   /** Controla qual seção do accordion está aberta. */
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const statsRef = useRef<HTMLElement | null>(null);
+  const [statsStarted, setStatsStarted] = useState(false);
+
+  useEffect(() => {
+    const section = statsRef.current;
+    if (!section || statsStarted) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStatsStarted(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.35 },
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, [statsStarted]);
 
   return (
     <main className="site-shell">
@@ -213,11 +235,20 @@ const CursoDetalhe = () => {
       </section>
 
       {/* Faixa de estatísticas */}
-      <section className="bg-primary text-primary-foreground">
+      <section
+        ref={statsRef}
+        className="bg-primary text-primary-foreground"
+      >
         <div className="section-container grid grid-cols-2 gap-4 py-10 md:grid-cols-4">
           {stats.map((s) => (
             <div key={s.label} className="stat-item">
-              <p className="text-2xl font-extrabold md:text-3xl">{s.value}</p>
+              <p className="text-2xl font-extrabold md:text-3xl">
+                <CountUpNumber
+                  active={statsStarted}
+                  end={s.value}
+                  suffix="+"
+                />
+              </p>
               <p className="text-[12px] uppercase tracking-wide opacity-90">
                 {s.label}
               </p>
@@ -243,12 +274,8 @@ const CursoDetalhe = () => {
       {/* Entre em contato */}
       <section
         aria-label="Entre em contato"
-        className="relative w-full"
-        style={{
-          backgroundImage: `url(${contatoBg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+        className="contact-parallax relative w-full"
+        style={{ backgroundImage: `url(${contatoBg})` }}
       >
         <div className="contact-overlay">
           <div className="section-container grid gap-10 py-16 md:grid-cols-2">
