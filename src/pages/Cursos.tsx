@@ -29,23 +29,18 @@
  * - Record<K, V>: type para mapa de strings
  */
 
-import { ArrowRight, Clock, MapPin, Menu, Search, User, X } from "lucide-react";
+import { ArrowRight, Clock, MapPin, Menu, Search, User } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetOverlay,
-} from "@/components/ui/sheet";
-import senaiLogo from "@/assets/senai-logo.png";
+import senaiLogo from "@/assets/senai-logo-header.png";
 import heroBanner from "@/assets/hero/cursos-alimenticia-banner.jpg";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
+import MobileMenu from "@/components/MobileMenu";
 
 // Developer - Alexsander Barreto - FIBRA
 
@@ -216,7 +211,7 @@ export const mockCourses = [
 ];
 
 const courseDescription =
-  "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam...";
+  "Explore cursos alinhados à indústria local, com aulas práticas, projetos reais e certificação profissional para quem busca carreira no setor produtivo.";
 
 const Cursos = () => {
   const { area } = useParams<{ area?: string }>();
@@ -302,53 +297,7 @@ const Cursos = () => {
             <Menu className="h-5 w-5" />
           </Button>
 
-          {/* Menu Mobile - Drawer */}
-          <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
-            <SheetOverlay />
-            <SheetContent side="left" className="w-full sm:w-80">
-              <div className="flex h-full flex-col gap-4 pt-6">
-                <div className="flex items-center justify-between border-b pb-4">
-                  <img
-                    src={senaiLogo}
-                    alt="Logo SENAI"
-                    width={100}
-                    height={36}
-                  />
-                  <SheetClose asChild>
-                    <Button variant="ghost" size="icon">
-                      <X className="h-5 w-5" />
-                    </Button>
-                  </SheetClose>
-                </div>
-                <nav className="flex flex-col gap-4">
-                  <SheetClose asChild>
-                    <Link
-                      to="/#areas"
-                      className="text-lg font-medium text-foreground hover:text-primary"
-                    >
-                      Áreas
-                    </Link>
-                  </SheetClose>
-                  <SheetClose asChild>
-                    <Link
-                      to="/#cursos"
-                      className="text-lg font-medium text-foreground hover:text-primary"
-                    >
-                      Cursos
-                    </Link>
-                  </SheetClose>
-                  <SheetClose asChild>
-                    <Link
-                      to="/#contato"
-                      className="text-lg font-medium text-foreground hover:text-primary"
-                    >
-                      Contatos
-                    </Link>
-                  </SheetClose>
-                </nav>
-              </div>
-            </SheetContent>
-          </Sheet>
+          <MobileMenu open={isMenuOpen} onOpenChange={setIsMenuOpen} />
         </div>
       </header>
 
@@ -371,21 +320,17 @@ const Cursos = () => {
       <section className="section-container py-10 md:py-12">
         <div className="mx-auto max-w-[760px] text-center">
           <p className="text-[13px] leading-6 text-muted-foreground sm:text-sm">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-            nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-            volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-            ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-            consequat.
+            A SENAI DF oferece cursos desenhados para a cadeia produtiva, com
+            foco em tecnologia, gestão e segurança industrial. Aqui você
+            encontra formação prática que conecta teoria e mercado de trabalho.
           </p>
           <h2 className="mt-8 mb-3 text-left text-base font-extrabold text-foreground">
             Oportunidades de trabalho
           </h2>
           <p className="text-left text-[13px] leading-6 text-muted-foreground sm:text-sm">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-            nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-            volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-            ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-            consequat.
+            As turmas preparam profissionais para atuar em setores como
+            alimentação, energia, construção e serviços. Você ganha competências
+            técnicas para integrar equipes operacionais, de manutenção e gestão.
           </p>
         </div>
       </section>

@@ -7,7 +7,6 @@ import {
   CalendarDays,
   Clock3,
   Menu,
-  X,
 } from "lucide-react";
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -15,18 +14,13 @@ import { Link, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetOverlay,
-} from "@/components/ui/sheet";
-import senaiLogo from "@/assets/senai-logo.png";
+import senaiLogo from "@/assets/senai-logo-header.png";
 import heroBanner from "@/assets/hero/curso-detalhe-banner.jpg";
 import contatoBg from "@/assets/hero/contato.jpg";
 import { mockCourses } from "@/pages/Cursos";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
+import MobileMenu from "@/components/MobileMenu";
 
 // Developer - Alexsander Barreto - FIBRA
 
@@ -34,7 +28,7 @@ import BackToTop from "@/components/BackToTop";
 const accordionSections = [
   {
     title: "Conteúdo programático",
-    body: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+    body: "Módulos práticos sobre normas de segurança, operação de equipamentos, controle de qualidade e inovação aplicada ao dia a dia industrial.",
   },
   {
     title: "Requisitos",
@@ -48,10 +42,10 @@ const accordionSections = [
 
 /** Estatísticas institucionais exibidas na faixa azul. */
 const stats = [
-  { value: "25+", label: "Year of experience" },
-  { value: "6.500+", label: "Class Completed" },
-  { value: "100+", label: "Experts Instructors" },
-  { value: "6.561+", label: "Students Enrolled" },
+  { value: "25+", label: "Anos de experiência" },
+  { value: "6.500+", label: "Turmas formadas" },
+  { value: "100+", label: "Especialistas em sala" },
+  { value: "6.561+", label: "Alunos em evolução" },
 ];
 
 const CursoDetalhe = () => {
@@ -100,53 +94,7 @@ const CursoDetalhe = () => {
             <Menu className="h-5 w-5" />
           </Button>
 
-          {/* Menu Mobile - Drawer */}
-          <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
-            <SheetOverlay />
-            <SheetContent side="left" className="w-full sm:w-80">
-              <div className="flex h-full flex-col gap-4 pt-6">
-                <div className="flex items-center justify-between border-b pb-4">
-                  <img
-                    src={senaiLogo}
-                    alt="Logo SENAI"
-                    width={100}
-                    height={36}
-                  />
-                  <SheetClose asChild>
-                    <Button variant="ghost" size="icon">
-                      <X className="h-5 w-5" />
-                    </Button>
-                  </SheetClose>
-                </div>
-                <nav className="flex flex-col gap-4">
-                  <SheetClose asChild>
-                    <Link
-                      to="/#areas"
-                      className="text-lg font-medium text-foreground hover:text-primary"
-                    >
-                      Áreas
-                    </Link>
-                  </SheetClose>
-                  <SheetClose asChild>
-                    <Link
-                      to="/#cursos"
-                      className="text-lg font-medium text-foreground hover:text-primary"
-                    >
-                      Cursos
-                    </Link>
-                  </SheetClose>
-                  <SheetClose asChild>
-                    <Link
-                      to="/#contato"
-                      className="text-lg font-medium text-foreground hover:text-primary"
-                    >
-                      Contatos
-                    </Link>
-                  </SheetClose>
-                </nav>
-              </div>
-            </SheetContent>
-          </Sheet>
+          <MobileMenu open={isMenuOpen} onOpenChange={setIsMenuOpen} />
         </div>
       </header>
 
@@ -202,8 +150,8 @@ const CursoDetalhe = () => {
               {course.status}
             </p>
             <p className="mb-4 text-[12px] leading-5 text-muted-foreground">
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-              nonummy nibh euismod tincidunt ut laoreet dolore magna.
+              Faça sua pré-inscrição e garanta atendimento prioritário com a
+              coordenação para liberação de vaga e confirmação de matrícula.
             </p>
             <button type="button" className="btn-senai-accent w-full">
               Fazer pré-inscrição
@@ -219,22 +167,18 @@ const CursoDetalhe = () => {
             Descrição
           </h2>
           <p className="mb-8 text-[13px] leading-6 text-muted-foreground sm:text-sm">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-            nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-            volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-            ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-            consequat.
+            Este curso foi criado para formar profissionais capazes de atuar em
+            ambientes industriais, com metodologias práticas, estudos de caso
+            reais e suporte de professores especialistas.
           </p>
 
           <h3 className="mb-3 text-base font-extrabold text-foreground">
             Oportunidades de trabalho
           </h3>
           <p className="mb-8 text-[13px] leading-6 text-muted-foreground sm:text-sm">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-            nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-            volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-            ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-            consequat.
+            Ao concluir, você estará preparado para atuar em equipes técnicas,
+            gerenciar processos produtivos e contribuir com melhorias reais em
+            empresas do setor.
           </p>
 
           <div className="space-y-2">
@@ -289,11 +233,9 @@ const CursoDetalhe = () => {
             Como me inscrever?
           </h2>
           <p className="text-[13px] leading-6 text-muted-foreground sm:text-sm">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-            nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-            volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-            ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-            consequat.
+            Para se inscrever, escolha o curso, preencha seus dados no
+            formulário e aguarde o contato da equipe FIBRA para confirmar sua
+            matrícula e orientá-lo sobre os próximos passos.
           </p>
         </div>
       </section>
@@ -318,9 +260,9 @@ const CursoDetalhe = () => {
                 Entre em contato
               </h2>
               <p className="mb-4 text-[13px] leading-6 opacity-90">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                aliquam erat volutpat.
+                Nossa equipe está pronta para orientar sua matrícula, esclarecer
+                dúvidas sobre horários e ajudar você a preparar a documentação
+                necessária.
               </p>
               <p className="text-[13px] leading-6 opacity-90">
                 Preencha o formulário ao lado e entraremos em contato.

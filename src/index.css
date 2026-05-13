@@ -163,6 +163,10 @@ All colors MUST be HSL.
     @apply h-auto w-[154px] object-contain;
   }
 
+  .senai-logo-content {
+    @apply block h-auto w-[220px] object-contain object-left;
+  }
+
   .nav-link-senai {
     @apply text-[12px] font-bold uppercase tracking-[0.18em] text-foreground/75 transition-colors hover:text-primary;
   }

@@ -23,8 +23,8 @@ export default defineConfig(({ mode }) => ({
       },
       includeAssets: ["favicon.ico", "apple-touch-icon.png", "masked-icon.svg"],
       manifest: {
-        name: "Portfólio SENAI - FIBRA Digital Identity",
-        short_name: "SENAI Portfolio",
+        name: "Portfólio SENAI - Identidade Digital FIBRA",
+        short_name: "Portfólio SENAI",
         description: "Plataforma digital para cursos SENAI",
         theme_color: "#000000",
         background_color: "#ffffff",

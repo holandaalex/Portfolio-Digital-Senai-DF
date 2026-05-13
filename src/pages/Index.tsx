@@ -13,7 +13,6 @@ import {
   Search,
   ShieldCheck,
   Users,
-  X,
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
@@ -22,15 +21,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetOverlay,
-} from "@/components/ui/sheet";
 import senaiLogo from "@/assets/senai-logo.png";
+import senaiLogoHeader from "@/assets/senai-logo-header.png";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
+import MobileMenu from "@/components/MobileMenu";
 // Banner completo da seção "Produção Alimentícia" — substitui o layout dividido (faixa rosa + foto)
 import heroFoodBanner from "@/assets/areas/SLIDERS_ProduçãoIndustrial.jpg";
 import heroSecurityBanner from "@/assets/areas/SLIDERS_Segurança.jpg";
@@ -50,6 +45,7 @@ import areaAlimentos from "@/assets/areas/producao-alimenticia.jpg";
 import areaDesign from "@/assets/areas/design.jpg";
 import areaManufatura from "@/assets/areas/manufatura.jpg";
 import areaSeguranca from "@/assets/areas/seguranca.jpg";
+import areaTextil from "@/assets/areas/textil-vestuario.jpg";
 
 // Developer - Alexsander Barreto - FIBRA
 
@@ -61,10 +57,10 @@ const stages = [
 ];
 
 const stats = [
-  { value: "25+", label: "Year of experience", icon: Users },
-  { value: "6,500+", label: "Class Completed", icon: GraduationCap },
-  { value: "100+", label: "Experts Instructors", icon: HardHat },
-  { value: "6,561+", label: "Students Enrolled", icon: ShieldCheck },
+  { value: "25+", label: "Anos formando talentos", icon: Users },
+  { value: "6.500+", label: "Turmas concluídas", icon: GraduationCap },
+  { value: "100+", label: "Instrutores especialistas", icon: HardHat },
+  { value: "6.561+", label: "Alunos preparados", icon: ShieldCheck },
 ];
 
 const areas = [
@@ -72,79 +68,99 @@ const areas = [
     group: "Controle e Processos Industriais",
     title: "Eletrônica e Automação",
     image: areaEletronica,
-    tone: "bg-[hsl(var(--hero-outline))]",
+    description:
+      "Formação para atuar com circuitos, sensores, comandos elétricos, automação industrial e integração de sistemas inteligentes.",
   },
   {
     group: "Controle e Processos Industriais",
     title: "Sistemas de Energia",
     image: areaEnergia,
-    tone: "bg-[hsl(var(--hero-outline))]",
+    description:
+      "Cursos voltados à geração, distribuição, eficiência energética e tecnologias aplicadas a sistemas elétricos e renováveis.",
   },
   {
     group: "Controle e Processos Industriais",
     title: "Manutenção e Operação",
     image: areaManutencao,
-    tone: "bg-[hsl(var(--hero-outline))]",
+    description:
+      "Capacitação para operação segura, inspeção, diagnóstico e manutenção de equipamentos industriais em rotina produtiva.",
   },
   {
     group: "Controle e Processos Industriais",
     title: "Metalmecânica",
     image: areaMetalmecanica,
-    tone: "bg-[hsl(var(--hero-outline))]",
+    description:
+      "Aprenda processos de soldagem, usinagem, fabricação mecânica e leitura técnica para transformar metal em solução industrial.",
   },
   {
     group: "Gestão e Negócios",
     title: "Gerencial",
     image: areaGerencial,
-    tone: "bg-secondary",
+    description:
+      "Desenvolva visão de liderança, planejamento, produtividade e gestão de equipes para ambientes industriais e administrativos.",
   },
   {
     group: "Gestão de Negócios",
     title: "Operações Financeiras",
     image: areaFinanceira,
-    tone: "bg-secondary",
+    description:
+      "Cursos para dominar rotinas financeiras, controles, indicadores, custos e tomada de decisão com foco em resultados.",
   },
   {
     group: "Informação e Comunicação",
     title: "Desenvolvimento de Sistemas",
     image: areaDev,
-    tone: "bg-[hsl(var(--hero-pink))]",
+    description:
+      "Aprenda a criar aplicações, sites e soluções digitais com lógica, programação, banco de dados e práticas de projeto.",
   },
   {
     group: "Informação e Comunicação",
     title: "Infraestrutura de Informação e Comunicação",
     image: areaInfra,
-    tone: "bg-[hsl(var(--hero-pink))]",
+    description:
+      "Formação para atuar com redes, servidores, nuvem, suporte técnico e ambientes conectados de alta disponibilidade.",
   },
   {
     group: "Infraestrutura",
     title: "Construção de Obras",
     image: areaConstrucao,
-    tone: "bg-[hsl(var(--hero-pink))]",
+    description:
+      "Capacitação para canteiros, planejamento, execução, segurança e técnicas aplicadas à construção civil.",
   },
   {
     group: "Produção Alimentícia",
     title: "Produção Alimentícia",
     image: areaAlimentos,
-    tone: "bg-[hsl(var(--hero-pink))]",
+    description:
+      "Cursos para processos de fabricação, boas práticas, qualidade, higiene e inovação na indústria de alimentos.",
   },
   {
     group: "Produção Cultural e Design",
     title: "Design",
     image: areaDesign,
-    tone: "bg-yellow-300",
+    description:
+      "Explore criação visual, desenvolvimento de produto, prototipagem, comunicação e soluções com olhar criativo.",
   },
   {
     group: "Produção Industrial",
     title: "Manufatura",
     image: areaManufatura,
-    tone: "bg-red-500",
+    description:
+      "Formação voltada a processos produtivos, máquinas, produtividade, controle de qualidade e operação industrial.",
   },
   {
     group: "Segurança",
     title: "Segurança",
     image: areaSeguranca,
-    tone: "bg-slate-400",
+    description:
+      "Aprenda práticas de prevenção, análise de riscos, normas, proteção coletiva e cultura de segurança no trabalho.",
+  },
+  {
+    group: "Produção Industrial",
+    title: "Têxtil e Vestuário",
+    image: areaTextil,
+    description:
+      "Cursos para modelagem, confecção, processos têxteis, acabamento e produção de peças com padrão profissional.",
   },
 ];
 
@@ -181,7 +197,11 @@ const Index = () => {
     <main className="site-shell">
       <header className="border-b border-transparent bg-background">
         <div className="section-container flex h-[72px] items-center justify-between gap-4 md:h-[88px]">
-          <img src={senaiLogo} alt="Logo SENAI" className="senai-logo" />
+          <img
+            src={senaiLogoHeader}
+            alt="Logo SENAI"
+            className="senai-logo"
+          />
 
           <nav
             className="hidden items-center gap-8 lg:gap-10 md:flex"
@@ -209,51 +229,7 @@ const Index = () => {
             <span className="sr-only">Abrir menu</span>
           </Button>
 
-          {/* Menu Mobile - Drawer */}
-          <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
-            <SheetOverlay />
-            <SheetContent side="left" className="w-full max-w-[320px] p-6">
-              <div className="flex h-full flex-col gap-6">
-                <div className="flex items-center justify-between border-b border-border pb-4">
-                  <div>
-                    <h2 className="text-lg font-semibold text-foreground">Menu</h2>
-                    <p className="text-sm text-muted-foreground">Selecione uma área ou curso</p>
-                  </div>
-                  <SheetClose asChild>
-                    <Button variant="ghost" size="icon" aria-label="Fechar menu">
-                      <X className="h-5 w-5" />
-                    </Button>
-                  </SheetClose>
-                </div>
-                <nav className="flex flex-col gap-3">
-                  <SheetClose asChild>
-                    <a
-                      href="#areas"
-                      className="rounded-xl px-4 py-4 text-base font-semibold text-foreground transition hover:bg-foreground/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground"
-                    >
-                      Áreas
-                    </a>
-                  </SheetClose>
-                  <SheetClose asChild>
-                    <a
-                      href="#cursos"
-                      className="rounded-xl px-4 py-4 text-base font-semibold text-foreground transition hover:bg-foreground/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground"
-                    >
-                      Cursos
-                    </a>
-                  </SheetClose>
-                  <SheetClose asChild>
-                    <a
-                      href="#contato"
-                      className="rounded-xl px-4 py-4 text-base font-semibold text-foreground transition hover:bg-foreground/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground"
-                    >
-                      Contatos
-                    </a>
-                  </SheetClose>
-                </nav>
-              </div>
-            </SheetContent>
-          </Sheet>
+          <MobileMenu open={isMenuOpen} onOpenChange={setIsMenuOpen} />
         </div>
       </header>
 
@@ -311,16 +287,14 @@ const Index = () => {
             <img
               src={senaiLogo}
               alt="Logo SENAI"
-              className="senai-logo"
+              className="senai-logo-content"
               loading="lazy"
             />
           </div>
           <p className="w-full text-left text-[13px] leading-6 text-muted-foreground sm:text-sm">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam
-            nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-            volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-            ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
-            consequat.
+            Conheça a SENAI DF, um polo de formação técnica que une laboratórios
+            modernos, professores com experiência de mercado e projetos voltados
+            para o futuro do trabalho.
           </p>
         </div>
 
@@ -350,8 +324,9 @@ const Index = () => {
                 </div>
                 <h3 className="text-sm font-extrabold">{title}</h3>
                 <p className="text-[11px] leading-5 text-muted-foreground">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                  diam nonummy nibh euismod.
+                  Conteúdos práticos e atualizados, pensados para quem busca
+                  desenvolvimento profissional e inserção rápida no mercado de
+                  trabalho.
                 </p>
               </div>
               <div className="w-full border-t border-border pt-3 text-center text-lg font-extrabold text-muted-foreground">
@@ -413,35 +388,25 @@ const Index = () => {
             )}
             {filteredAreas.map((area) => (
               <Card key={area.title} className="area-card">
-                <div className="relative h-[160px] overflow-hidden sm:h-[170px]">
-                  <div
-                    className={`absolute inset-y-0 left-0 w-[58%] ${area.tone}`}
-                  />
+                <div className="relative aspect-video overflow-hidden">
                   <img
                     src={area.image}
                     alt={area.title}
-                    className="area-thumb absolute inset-y-0 right-0 w-[42%] h-full object-cover"
-                    width={768}
-                    height={512}
+                    className="h-full w-full object-cover"
+                    width={1280}
+                    height={720}
                     loading="lazy"
                   />
-                  <div className="absolute inset-y-0 left-0 w-[58%] flex flex-col p-3 sm:p-4">
-                    <span className="block text-[9px] font-bold uppercase tracking-[0.12em] text-foreground/80 line-clamp-2">
-                      {area.group}
-                    </span>
-                    <div className="mt-2 text-[0.95rem] font-black uppercase leading-[1.05] text-primary-foreground sm:text-[1.05rem] md:text-[1.15rem] break-words hyphens-auto">
-                      {area.title}
-                    </div>
-                  </div>
                 </div>
                 <CardContent className="p-4">
+                  <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.12em] text-primary">
+                    {area.group}
+                  </p>
                   <h3 className="mb-2 text-base font-extrabold">
                     {area.title}
                   </h3>
                   <p className="text-[12px] leading-5 text-muted-foreground">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                    aliquam.
+                    {area.description}
                   </p>
                   <Link
                     to={`/cursos/${encodeURIComponent(area.title)}`}
@@ -461,10 +426,9 @@ const Index = () => {
           Como me inscrever?
         </h2>
         <p className="mx-auto max-w-[860px] text-[13px] leading-6 text-muted-foreground sm:text-sm">
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-          nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-          volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-          ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+          Inscreva-se em etapas simples: escolha o curso, preencha seus dados e
+          aguarde o contato da nossa equipe. Em pouco tempo você estará a um
+          passo de começar sua formação.
         </p>
       </section>
 
@@ -485,9 +449,9 @@ const Index = () => {
               Entre em contato
             </h2>
             <p className="mb-6 text-[13px] leading-6 text-primary-foreground/88">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam
-              nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-              erat volutpat.
+              Nossa equipe está pronta para esclarecer dúvidas sobre turmas,
+              valores e documentação. Fale com a FIBRA e avance na sua formação
+              profissional.
             </p>
             <p className="text-[12px] leading-5 text-primary-foreground/80">
               Preencha o formulário e nossa equipe entrará em contato para

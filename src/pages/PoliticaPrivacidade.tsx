@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import senaiLogo from "@/assets/senai-logo.png";
+import senaiLogo from "@/assets/senai-logo-header.png";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 
@@ -57,9 +57,17 @@ const PoliticaPrivacidade = () => (
     <header className="border-b border-border bg-background">
       <div className="section-container flex h-[72px] items-center justify-between">
         <Link to="/">
-          <img src={senaiLogo} alt="Logo SENAI" className="senai-logo" loading="lazy" />
+          <img
+            src={senaiLogo}
+            alt="Logo SENAI"
+            className="senai-logo"
+            loading="lazy"
+          />
         </Link>
-        <Link to="/" className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline">
+        <Link
+          to="/"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
+        >
           <ArrowLeft className="h-4 w-4" /> Voltar
         </Link>
       </div>
@@ -70,14 +78,19 @@ const PoliticaPrivacidade = () => (
         Política de Privacidade
       </h1>
       <p className="mb-8 text-sm text-muted-foreground">
-        Em conformidade com a Lei Geral de Proteção de Dados Pessoais — LGPD (Lei nº 13.709/2018).
+        Em conformidade com a Lei Geral de Proteção de Dados Pessoais — LGPD
+        (Lei nº 13.709/2018).
       </p>
 
       <div className="space-y-6">
         {sections.map((s) => (
           <article key={s.title}>
-            <h2 className="mb-2 text-base font-extrabold text-foreground sm:text-lg">{s.title}</h2>
-            <p className="text-[13px] leading-6 text-muted-foreground sm:text-sm">{s.body}</p>
+            <h2 className="mb-2 text-base font-extrabold text-foreground sm:text-lg">
+              {s.title}
+            </h2>
+            <p className="text-[13px] leading-6 text-muted-foreground sm:text-sm">
+              {s.body}
+            </p>
           </article>
         ))}
       </div>
