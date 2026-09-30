@@ -22,6 +22,7 @@ import NotFound from "./pages/NotFound.tsx";
 import Cursos from "./pages/Cursos.tsx";
 import CursoDetalhe from "./pages/CursoDetalhe.tsx";
 import PoliticaPrivacidade from "./pages/PoliticaPrivacidade.tsx";
+import Aprendizagem from "./pages/Aprendizagem.tsx";
 import CookieConsent from "./components/CookieConsent.tsx";
 
 // Cria uma instância do cliente React Query para gerenciar cache de dados
@@ -50,6 +51,7 @@ const App = () => (
           <Route path="/cursos/:area/:id" element={<CursoDetalhe />} />
           <Route path="/cursos/:area" element={<Cursos />} />
           <Route path="/cursos" element={<Cursos />} />
+          <Route path="/aprendizagem" element={<Aprendizagem />} />
           <Route
             path="/politica-de-privacidade"
             element={<PoliticaPrivacidade />}

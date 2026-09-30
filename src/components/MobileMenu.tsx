@@ -5,6 +5,7 @@ import {
   MapPin,
   Phone,
   ShieldCheck,
+  BriefcaseBusiness,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -19,7 +20,9 @@ type MobileMenuProps = {
 const navItems = [
   { label: "Áreas tecnológicas", href: "/#areas", Icon: BookOpen },
   { label: "Cursos", href: "/#cursos", Icon: GraduationCap },
-  { label: "Contato", href: "/#contato", Icon: Phone },
+  { label: "Aprendizagem Industrial", href: "/aprendizagem", Icon: BookOpen },
+  { label: "Senai PRO", href: "/#senaipro", Icon: BriefcaseBusiness },
+  { label: "Contatos", href: "/#contato", Icon: Phone },
   { label: "Privacidade", href: "/politica-de-privacidade", Icon: ShieldCheck },
 ];
 

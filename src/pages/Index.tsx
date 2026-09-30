@@ -27,6 +27,8 @@ import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import MobileMenu from "@/components/MobileMenu";
 import CountUpNumber from "@/components/CountUpNumber";
+import { mockCourses } from "@/pages/Cursos";
+import { Calendar, MapPin, Clock } from "lucide-react";
 // Banner completo da seção "Produção Alimentícia" — substitui o layout dividido (faixa rosa + foto)
 import heroFoodBanner from "@/assets/areas/SLIDERS_ProduçãoIndustrial.jpg";
 import heroSecurityBanner from "@/assets/areas/SLIDERS_Segurança.jpg";
@@ -231,10 +233,16 @@ const Index = () => {
             aria-label="Navegação principal"
           >
             <a href="#areas" className="nav-link-senai">
-              Áreas
+              Áreas Tecnológicas
             </a>
             <a href="#cursos" className="nav-link-senai">
               Cursos
+            </a>
+            <a href="/aprendizagem" className="nav-link-senai">
+              Aprendizagem Industrial
+            </a>
+            <a href="#senaipro" className="nav-link-senai">
+              Senai PRO
             </a>
             <a href="#contato" className="nav-link-senai">
               Contatos
@@ -445,6 +453,58 @@ const Index = () => {
               </Card>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Cursos em Destaque */}
+      <section className="section-container py-12 md:py-14 bg-secondary/30">
+        <div className="mx-auto mb-8 max-w-[680px] text-center">
+          <h2 className="mb-3 text-[26px] font-black uppercase text-primary sm:text-[28px] md:text-[32px]">
+            Cursos em Destaque
+          </h2>
+          <p className="text-sm text-muted-foreground">
+            Confira algumas das nossas melhores opções de qualificação profissional, estruturadas para o mercado de trabalho atual.
+          </p>
+        </div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {mockCourses.slice(0, 4).map((course) => (
+            <Card key={course.id} className="flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+              <div className="p-5">
+                <div className="mb-2 inline-flex rounded-full bg-primary/10 px-2.5 py-0.5 text-[10px] font-bold uppercase text-primary">
+                  {course.level}
+                </div>
+                <h3 className="mb-3 text-[15px] font-extrabold uppercase leading-snug text-foreground line-clamp-2">
+                  {course.title}
+                </h3>
+                <p className="mb-4 text-xs text-muted-foreground line-clamp-3">
+                  {course.description}
+                </p>
+                <div className="space-y-1.5 text-[11px] text-muted-foreground font-medium">
+                  <div className="flex items-center gap-1.5">
+                    <Clock className="h-3.5 w-3.5" />
+                    {course.hours} • {course.shift}
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <MapPin className="h-3.5 w-3.5" />
+                    {course.locations.join(", ")}
+                  </div>
+                </div>
+              </div>
+              <div className="border-t border-border bg-muted/20 p-4">
+                <Link
+                  to={`/cursos/Destaque/${course.id}`}
+                  className="flex w-full items-center justify-center rounded-[6px] bg-[#f39200] px-4 py-2.5 text-xs font-bold text-white transition-opacity hover:opacity-90"
+                >
+                  Saiba mais
+                </Link>
+              </div>
+            </Card>
+          ))}
+        </div>
+        <div className="mt-8 text-center">
+          <Link to="/cursos" className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline">
+            Ver todos os cursos <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </section>
 

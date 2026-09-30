@@ -14,6 +14,16 @@ import { Link, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import senaiLogo from "@/assets/senai-logo-header.png";
 import heroBanner from "@/assets/hero/curso-detalhe-banner.jpg";
 import contatoBg from "@/assets/hero/contato.jpg";
@@ -49,6 +59,79 @@ const stats = [
   { value: 6561, label: "Alunos em evolução" },
 ];
 
+const CadastroInteresseDialog = () => (
+  <Dialog>
+    <DialogTrigger asChild>
+      <button
+        type="button"
+        className="w-full rounded-[6px] bg-[#f39200] px-4 py-3 text-[14px] font-bold text-white shadow-md transition-all hover:bg-[#d97c00] hover:shadow-lg active:scale-[0.98]"
+      >
+        Cadastro de interesse
+      </button>
+    </DialogTrigger>
+    <DialogContent className="sm:max-w-[550px] p-0 overflow-hidden border-0 shadow-2xl rounded-xl">
+      <div className="bg-white px-8 py-8 md:px-10 md:py-10">
+        <DialogHeader className="mb-6">
+          <DialogTitle className="text-[26px] font-extrabold text-[#2a3b4c] tracking-tight">
+            Cadastro de interesse
+          </DialogTitle>
+          <DialogDescription className="text-[15px] text-[#5a6a7c] mt-2.5 leading-relaxed">
+            Preencha o cadastro de interesse e seja avisado quando forem abertas novas turmas.
+          </DialogDescription>
+        </DialogHeader>
+        
+        <form className="grid gap-6" onSubmit={(e) => { e.preventDefault(); alert('Cadastro enviado para o gestor!'); }}>
+          <div className="grid gap-2">
+            <Label htmlFor="nome" className="text-[12px] font-black text-[#005cac] uppercase tracking-wider">NOME*</Label>
+            <Input id="nome" required className="bg-[#f2f6fa] border-2 border-transparent h-12 text-[15px] text-[#2a3b4c] rounded-lg transition-all duration-200 focus-visible:ring-0 focus-visible:border-[#005cac] focus-visible:bg-white hover:bg-[#eaf0f5]" />
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="grid gap-2">
+              <Label htmlFor="tel1" className="text-[12px] font-black text-[#005cac] uppercase tracking-wider">TELEFONE (opção 1)*</Label>
+              <Input id="tel1" required placeholder="(XX) - _____-____" className="bg-[#f2f6fa] border-2 border-transparent h-12 text-[15px] text-[#2a3b4c] rounded-lg transition-all duration-200 focus-visible:ring-0 focus-visible:border-[#005cac] focus-visible:bg-white hover:bg-[#eaf0f5] placeholder:text-[#9aa7b5]" />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="tel2" className="text-[12px] font-black text-[#005cac] uppercase tracking-wider">TELEFONE (opção 2)</Label>
+              <Input id="tel2" placeholder="(XX) - _____-____" className="bg-[#f2f6fa] border-2 border-transparent h-12 text-[15px] text-[#2a3b4c] rounded-lg transition-all duration-200 focus-visible:ring-0 focus-visible:border-[#005cac] focus-visible:bg-white hover:bg-[#eaf0f5] placeholder:text-[#9aa7b5]" />
+            </div>
+          </div>
+
+          <div className="grid gap-2">
+            <Label htmlFor="email" className="text-[12px] font-black text-[#005cac] uppercase tracking-wider">E-MAIL*</Label>
+            <Input id="email" type="email" required className="bg-[#f2f6fa] border-2 border-transparent h-12 text-[15px] text-[#2a3b4c] rounded-lg transition-all duration-200 focus-visible:ring-0 focus-visible:border-[#005cac] focus-visible:bg-white hover:bg-[#eaf0f5]" />
+          </div>
+
+          <div className="grid gap-3 mt-2">
+            <Label className="text-[12px] font-black text-[#005cac] uppercase tracking-wider">TURNO*</Label>
+            <RadioGroup defaultValue="matutino" className="flex flex-wrap gap-5 md:gap-8">
+              <div className="flex items-center space-x-2.5">
+                <RadioGroupItem value="matutino" id="r1" className="w-5 h-5 border-2 text-[#005cac] border-[#005cac] focus:ring-[#005cac]" />
+                <Label htmlFor="r1" className="font-medium text-[15px] text-[#4a5a6c] cursor-pointer">Matutino</Label>
+              </div>
+              <div className="flex items-center space-x-2.5">
+                <RadioGroupItem value="vespertino" id="r2" className="w-5 h-5 border-2 text-[#005cac] border-[#005cac] focus:ring-[#005cac]" />
+                <Label htmlFor="r2" className="font-medium text-[15px] text-[#4a5a6c] cursor-pointer">Vespertino</Label>
+              </div>
+              <div className="flex items-center space-x-2.5">
+                <RadioGroupItem value="noturno" id="r3" className="w-5 h-5 border-2 text-[#005cac] border-[#005cac] focus:ring-[#005cac]" />
+                <Label htmlFor="r3" className="font-medium text-[15px] text-[#4a5a6c] cursor-pointer">Noturno</Label>
+              </div>
+            </RadioGroup>
+          </div>
+
+          <div className="mt-4">
+            <Button type="submit" className="w-full bg-[#f39200] hover:bg-[#d97c00] text-white font-extrabold text-[16px] h-14 rounded-lg shadow-lg hover:shadow-xl transition-all active:scale-[0.98]">
+              Enviar
+            </Button>
+            <p className="text-[12px] text-[#8a9aa8] font-medium mt-4">* Campos obrigatórios</p>
+          </div>
+        </form>
+      </div>
+    </DialogContent>
+  </Dialog>
+);
+
 const CursoDetalhe = () => {
   const { area, id } = useParams<{ area?: string; id?: string }>();
   const macroArea = area ? decodeURIComponent(area) : "Segurança";
@@ -59,6 +142,11 @@ const CursoDetalhe = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const statsRef = useRef<HTMLElement | null>(null);
   const [statsStarted, setStatsStarted] = useState(false);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   useEffect(() => {
     const section = statsRef.current;
@@ -97,10 +185,16 @@ const CursoDetalhe = () => {
             aria-label="Navegação principal"
           >
             <Link to="/#areas" className="nav-link-senai">
-              Áreas
+              Áreas Tecnológicas
             </Link>
             <Link to="/#cursos" className="nav-link-senai">
               Cursos
+            </Link>
+            <Link to="/aprendizagem" className="nav-link-senai">
+              Aprendizagem Industrial
+            </Link>
+            <Link to="/#senaipro" className="nav-link-senai">
+              Senai PRO
             </Link>
             <Link to="/#contato" className="nav-link-senai">
               Contatos
@@ -166,18 +260,38 @@ const CursoDetalhe = () => {
             </ul>
           </div>
 
-          {/* Card de inscrição flutuante */}
-          <aside className="w-full self-start rounded-[10px] bg-background p-5 shadow-[0_10px_24px_hsl(var(--soft-shadow))] md:mt-2">
-            <p className="mb-2 text-sm font-extrabold text-green-600">
-              {course.status}
-            </p>
-            <p className="mb-4 text-[12px] leading-5 text-muted-foreground">
-              Faça sua pré-inscrição e garanta atendimento prioritário com a
-              coordenação para liberação de vaga e confirmação de matrícula.
-            </p>
-            <button type="button" className="btn-senai-accent w-full">
-              Fazer pré-inscrição
-            </button>
+          {/* Card de turmas abertas / interesse flutuante */}
+          <aside className="w-full self-start rounded-[16px] bg-background p-6 shadow-[0_10px_24px_hsl(var(--soft-shadow))] md:mt-2">
+            {course.status === "TURMAS ABERTAS" || course.availability === "Vagas abertas" ? (
+              <>
+                <h3 className="mb-4 text-[1.1rem] font-black text-[#429E50]">
+                  Turmas abertas
+                </h3>
+                <div className="mb-5 flex flex-col gap-2.5">
+                  {course.locations.map((loc, idx) => (
+                    <button
+                      key={`${loc}-${idx}`}
+                      className="w-full rounded-[6px] bg-[#c32328] px-4 py-3 text-center text-[14px] font-bold text-white transition-opacity hover:opacity-90"
+                    >
+                      {loc} - {course.shift}
+                    </button>
+                  ))}
+                </div>
+                <hr className="mb-4 border-border" />
+                <p className="mb-5 text-[13px] leading-relaxed text-foreground/80">
+                  Não encontrou a turma na escola ou no horário que gostaria? Preencha o cadastro de interesse e seja avisado quando forem abertas novas turmas.
+                </p>
+                <CadastroInteresseDialog />
+              </>
+            ) : (
+              <>
+                <p className="mb-5 text-[13px] leading-relaxed text-foreground/80">
+                  Não há vagas abertas no momento. Preencha o cadastro de interesse e seja avisado quando forem abertas novas turmas.
+                </p>
+                <hr className="mb-4 border-border" />
+                <CadastroInteresseDialog />
+              </>
+            )}
           </aside>
         </div>
       </section>
@@ -204,7 +318,20 @@ const CursoDetalhe = () => {
           </p>
 
           <div className="space-y-2">
-            {accordionSections.map((s, i) => {
+            {[
+              {
+                title: "Conteúdo programático",
+                body: (course as any).description || "Módulos práticos sobre normas de segurança, operação de equipamentos, controle de qualidade e inovação aplicada ao dia a dia industrial.",
+              },
+              {
+                title: "Requisitos",
+                body: (course as any).requirements || "Idade mínima de 16 anos, ensino fundamental completo e disponibilidade no turno escolhido.",
+              },
+              {
+                title: "Perfil profissional",
+                body: "Profissional capacitado para atuar no setor, seguindo as melhores práticas e normas técnicas de mercado.",
+              },
+            ].map((s, i) => {
               const open = openIndex === i;
               return (
                 <div

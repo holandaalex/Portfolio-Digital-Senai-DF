@@ -1,0 +1,70 @@
+# ===================================================================
+# CONFIGURAÇÃO PARA REACT ROUTER SPA (Single Page Application)
+# ===================================================================
+# Este arquivo é essencial para que o React Router funcione corretamente
+# em hosting compartilhado (Hostgator, etc)
+
+# 1. Habilita rewrite engine
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  
+  # 2. Base da aplicação (remova a barra se estiver em subpasta)
+  RewriteBase /
+  
+  # 3. Redireciona todas as requests para index.html (menos arquivos/pastas reais)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ index.html [QSA,L]
+</IfModule>
+
+# ===================================================================
+# COMPRESSÃO GZIP (melhor performance)
+# ===================================================================
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/json
+</IfModule>
+
+# ===================================================================
+# CACHE DO NAVEGADOR (assets otimizados)
+# ===================================================================
+<IfModule mod_expires.c>
+  ExpiresActive On
+  
+  # HTML não-cacheável (sempre verifica no servidor)
+  ExpiresByType text/html "max-age=3600"
+  
+  # Assets versionados (1 ano - Vite adiciona hash ao nome)
+  ExpiresByType application/javascript "max-age=31536000"
+  ExpiresByType text/css "max-age=31536000"
+  ExpiresByType image/jpeg "max-age=31536000"
+  ExpiresByType image/png "max-age=31536000"
+  ExpiresByType image/svg+xml "max-age=31536000"
+  ExpiresByType font/woff2 "max-age=31536000"
+  
+  # Manifest (cache 1 dia)
+  ExpiresByType application/manifest+json "max-age=86400"
+</IfModule>
+
+# ===================================================================
+# SECURITY HEADERS (já configurado em index.html também)
+# ===================================================================
+<IfModule mod_headers.c>
+  # Previne clickjacking
+  Header always set X-Frame-Options "DENY"
+  
+  # Força HTTPS (descomente se usar SSL)
+  # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  
+  # Previne MIME sniffing
+  Header always set X-Content-Type-Options "nosniff"
+</IfModule>
+
+# ===================================================================
+# NOTAS:
+# 1. Este arquivo DEVE estar na RAIZ da aplicação (mesmo nível de index.html)
+# 2. Se a app estiver em subpasta, atualize RewriteBase para /pasta/
+# 3. Se não funcionar, contate suporte Hostgator para habilitar mod_rewrite
+# ===================================================================

@@ -29,7 +29,7 @@
  * - Record<K, V>: type para mapa de strings
  */
 
-import { ArrowRight, Clock, MapPin, Menu, Search, User } from "lucide-react";
+import { Menu, Search, Hourglass, Share2 } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
@@ -95,119 +95,122 @@ export const mockCourses = [
     id: 1,
     modality: "Presencial",
     level: "Cursos Técnicos",
-    title: "Técnico em Administração",
-    hours: "1200h",
+    title: "Técnico em Modelagem do Têxtil e Vestuário",
+    hours: "1000h",
     shift: "Vespertino",
-    locations: ["Sobradinho", "Taguatinga", "Gama"],
+    locations: ["Taguatinga", "Gama"],
     status: "TURMAS ABERTAS",
     availability: "Vagas abertas",
     type: "Gratuito",
-    startDate: "12/12/2026",
+    startDate: "12/03/2026",
+    description: "Desenvolver a modelagem manual e informatizada de produtos do vestuário e supervisionar o setor de modelagem e pilotagem, seguindo padrões de qualidade, produtividade e sustentabilidade.",
+    requirements: "Estar cursando a partir da 2ª série do Ensino Médio ou ter concluído o Ensino Médio | 16 anos",
   },
   {
     id: 2,
     modality: "Presencial",
     level: "Cursos Livres",
-    title: "Confeitaria Artesanal",
-    hours: "80h",
+    title: "Costureiro Sob Medida – Ateliê de Luxo",
+    hours: "340h",
     shift: "Manhã",
     locations: ["Sobradinho"],
     status: "TURMAS ABERTAS",
     availability: "Vagas abertas",
     type: "Pago",
-    startDate: "10/03/2026",
+    startDate: "10/04/2026",
+    description: "Executar modelagem, corte e costura sob medida de peças do vestuário de alto padrão, com foco em técnicas adotadas para a confecção de produtos do segmento de luxo.",
+    requirements: "Conhecimentos prévios em modelagem e em costura | Ensino Fundamental completo | 16 anos",
   },
   {
     id: 3,
-    modality: "A Distância",
-    level: "Pós-graduação",
-    title: "Pós em Engenharia de Alimentos",
-    hours: "360h",
-    shift: "Integral",
-    locations: ["Taguatinga"],
-    status: "TURMAS ABERTAS",
-    availability: "Vagas abertas",
-    type: "Pago",
-    startDate: "01/04/2026",
-  },
-  {
-    id: 4,
     modality: "Presencial",
     level: "Aprendiz SENAI",
-    title: "Aprendizagem Industrial em Panificação",
-    hours: "800h",
-    shift: "Tarde",
-    locations: ["Gama", "Sobradinho"],
-    status: "TURMAS ABERTAS",
-    availability: "Vagas abertas",
-    type: "Gratuito",
-    startDate: "20/02/2026",
-  },
-  {
-    id: 5,
-    modality: "Presencial",
-    level: "Cursos Técnicos",
-    title: "Técnico em Alimentos",
-    hours: "1500h",
-    shift: "Noite",
-    locations: ["Taguatinga"],
-    status: "TURMAS ABERTAS",
-    availability: "Vagas abertas",
-    type: "Gratuito",
-    startDate: "05/05/2026",
-  },
-  {
-    id: 6,
-    modality: "A Distância",
-    level: "Cursos Livres",
-    title: "Boas Práticas de Fabricação",
-    hours: "40h",
-    shift: "Integral",
-    locations: ["Sobradinho", "Gama", "Taguatinga"],
-    status: "TURMAS ABERTAS",
-    availability: "Vagas abertas",
-    type: "Gratuito",
-    startDate: "15/03/2026",
-  },
-  {
-    id: 7,
-    modality: "Presencial",
-    level: "Graduação",
-    title: "Engenharia de Produção",
-    hours: "4000h",
-    shift: "Noite",
-    locations: ["Taguatinga"],
-    status: "TURMAS ABERTAS",
-    availability: "Vagas abertas",
-    type: "Pago",
-    startDate: "01/08/2026",
-  },
-  {
-    id: 8,
-    modality: "Presencial",
-    level: "Superior Extensão",
-    title: "Extensão em Gestão da Qualidade",
-    hours: "120h",
-    shift: "Manhã",
-    locations: ["Sobradinho"],
-    status: "TURMAS ABERTAS",
-    availability: "Vagas abertas",
-    type: "Pago",
-    startDate: "10/06/2026",
-  },
-  {
-    id: 9,
-    modality: "Presencial",
-    level: "Cursos Livres",
-    title: "Manipulação de Alimentos",
-    hours: "20h",
+    title: "Costureiro Industrial",
+    hours: "200h",
     shift: "Tarde",
     locations: ["Gama"],
     status: "TURMAS ABERTAS",
     availability: "Vagas abertas",
     type: "Gratuito",
-    startDate: "22/03/2026",
+    startDate: "05/05/2026",
+    description: "Costurar peças do vestuário em máquinas industriais, respeitando procedimentos e normas técnicas, de qualidade, de produtividade, de ergonomia, de saúde e segurança.",
+    requirements: "Ensino Fundamental completo | 16 anos",
   },
+  {
+    id: 4,
+    modality: "Presencial",
+    level: "Cursos Livres",
+    title: "Modelista",
+    hours: "200h",
+    shift: "Noite",
+    locations: ["Taguatinga"],
+    status: "TURMAS ABERTAS",
+    availability: "Vagas abertas",
+    type: "Pago",
+    startDate: "15/05/2026",
+    description: "Realizar a modelagem plana de peças do vestuário, seguindo tendências de moda e de acordo com padrões de qualidade, produtividade e sustentabilidade.",
+    requirements: "Ensino Fundamental completo | 16 anos",
+  },
+  {
+    id: 5,
+    modality: "Presencial",
+    level: "Aprendiz SENAI",
+    title: "Assistente de Estilo",
+    hours: "200h",
+    shift: "Manhã",
+    locations: ["Sobradinho", "Gama"],
+    status: "TURMAS ABERTAS",
+    availability: "Vagas abertas",
+    type: "Gratuito",
+    startDate: "20/06/2026",
+    description: "Auxiliar a criação e o desenvolvimento de coleção ou produto, inclusive por meio de softwares, seguindo padrões de qualidade, produtividade e sustentabilidade.",
+    requirements: "Ensino Fundamental completo | 16 anos",
+  },
+  {
+    id: 6,
+    modality: "A Distância",
+    level: "Cursos Livres",
+    title: "Adobe para Design de Moda",
+    hours: "60h",
+    shift: "Integral",
+    locations: ["Taguatinga", "Gama", "Sobradinho"],
+    status: "TURMAS ABERTAS",
+    availability: "Vagas abertas",
+    type: "Gratuito",
+    startDate: "01/07/2026",
+    description: "Realizar coleções-cápsula de produtos de moda em Adobe Illustrator e Photoshop, de acordo com procedimentos técnicos, normas ambientais e de segurança.",
+    requirements: "16 anos | Ensino Fundamental completo | Conhecimentos prévios em design de moda | Informática intermediária",
+  },
+  {
+    id: 7,
+    modality: "Presencial",
+    level: "Cursos Livres",
+    title: "EcoFashion Modelagem e Costura",
+    hours: "60h",
+    shift: "Tarde",
+    locations: ["Taguatinga"],
+    status: "TURMAS ABERTAS",
+    availability: "Vagas abertas",
+    type: "Pago",
+    startDate: "10/08/2026",
+    description: "Criar, modelar, cortar e costurar peças do vestuário com foco em processos sustentáveis pautados nos princípios de sustentabilidade ambiental, social e de governança.",
+    requirements: "16 anos | Ensino Fundamental completo | Conhecimentos prévios em modelagem plana e costura | Informática básica",
+  },
+  {
+    id: 8,
+    modality: "Presencial",
+    level: "Cursos Livres",
+    title: "Alfaiataria Industrial: Confecção de Blazer",
+    hours: "124h",
+    shift: "Noite",
+    locations: ["Gama"],
+    status: "TURMAS ABERTAS",
+    availability: "Vagas abertas",
+    type: "Pago",
+    startDate: "05/09/2026",
+    description: "Executar modelagem, corte e costura sob medida de peças do vestuário, seguindo padrões de qualidade e sustentabilidade da empresa.",
+    requirements: "Conhecimentos prévios na área de costura | Ensino Fundamental completo | 16 anos",
+  }
 ];
 
 const courseDescription =
@@ -278,10 +281,16 @@ const Cursos = () => {
             aria-label="Navegação principal"
           >
             <Link to="/#areas" className="nav-link-senai">
-              Áreas
+              Áreas Tecnológicas
             </Link>
             <Link to="/#cursos" className="nav-link-senai">
               Cursos
+            </Link>
+            <Link to="/aprendizagem" className="nav-link-senai">
+              Aprendizagem Industrial
+            </Link>
+            <Link to="/#senaipro" className="nav-link-senai">
+              Senai PRO
             </Link>
             <Link to="/#contato" className="nav-link-senai">
               Contatos
@@ -407,48 +416,35 @@ const Cursos = () => {
                 key={course.id}
                 className="flex flex-col overflow-hidden p-0"
               >
-                <div className="flex flex-1 flex-col p-5">
-                  <p className="mb-2 text-right text-[11px] font-semibold text-destructive">
-                    {course.modality}{" "}
-                    <span className="text-muted-foreground">|</span>{" "}
-                    {course.level}
+                <div className="flex flex-1 flex-col p-6">
+                  <p className="mb-3 text-right text-[13px] font-light text-destructive">
+                    {course.modality} <span className="mx-1">|</span> {course.level}
                   </p>
-                  <h3 className="mb-2 text-[1.05rem] font-extrabold text-foreground">
+                  <h3 className="mb-3 text-[1.15rem] font-black leading-tight text-foreground">
                     {course.title}
                   </h3>
-                  <p className="mb-4 text-[12px] leading-5 text-muted-foreground">
+                  <p className="mb-5 text-[13px] leading-relaxed text-foreground/80">
                     {courseDescription}
                   </p>
-                  <ul className="mb-4 space-y-1.5 text-[12px] text-muted-foreground">
-                    <li className="flex items-center gap-2">
-                      <Clock className="h-3.5 w-3.5" /> {course.hours}
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <User className="h-3.5 w-3.5" /> {course.shift}
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <MapPin className="h-3.5 w-3.5" />{" "}
-                      {course.locations.join(" | ")}
+                  <ul className="mb-5">
+                    <li className="flex items-center gap-2 text-[14px] font-extrabold text-foreground">
+                      <Hourglass className="h-5 w-5 text-muted-foreground" /> {course.hours}
                     </li>
                   </ul>
-                  <p className="mb-4 text-[11px] font-bold">
-                    <span className="text-green-600">{course.status}</span>
-                    <span className="text-muted-foreground">
-                      {" "}
-                      | Início em {course.startDate}
-                    </span>
+                  <p className="mb-5 text-[13px] font-black uppercase text-[#429E50]">
+                    {course.status}
                   </p>
-                  <button type="submit" className="btn-senai-accent w-full">
-                    Pré inscrição
-                  </button>
-                </div>
-                <div className="border-t border-border bg-secondary/40 px-5 py-3 text-right">
                   <Link
                     to={`/cursos/${encodeURIComponent(macroArea)}/${course.id}`}
-                    className="inline-flex items-center gap-1 text-[12px] font-semibold text-foreground underline-offset-2 hover:underline"
+                    className="inline-flex h-11 w-full items-center justify-center rounded-[6px] bg-[#c32328] px-6 text-[14px] font-bold text-white transition-opacity hover:opacity-90"
                   >
-                    Ver curso <ArrowRight className="h-3.5 w-3.5" />
+                    Saiba mais
                   </Link>
+                </div>
+                <div className="border-t border-border bg-secondary/30 px-5 py-3 text-right flex justify-end">
+                  <button type="button" aria-label="Compartilhar" className="text-[#c32328] hover:opacity-80 transition-opacity">
+                    <Share2 className="h-[22px] w-[22px] fill-current" />
+                  </button>
                 </div>
               </Card>
             ))}
