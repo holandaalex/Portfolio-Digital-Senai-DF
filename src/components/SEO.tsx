@@ -4,7 +4,7 @@ interface SEOProps {
   title: string;
   description: string;
   type?: "website" | "Course";
-  courseData?: any;
+  courseData?: Record<string, unknown>;
 }
 
 /**

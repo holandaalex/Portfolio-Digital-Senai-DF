@@ -13,6 +13,8 @@ import {
   Search,
   ShieldCheck,
   Users,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
@@ -210,9 +212,16 @@ const Index = () => {
    * comparando apenas o título do curso/área (case-insensitive).
    */
   const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const statsRef = useRef<HTMLElement | null>(null);
   const [statsStarted, setStatsStarted] = useState(false);
+
+  // Reseta para a primeira página sempre que o termo de busca mudar
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm]);
 
   useEffect(() => {
     const section = statsRef.current;
@@ -238,6 +247,12 @@ const Index = () => {
     if (!term) return areas;
     return areas.filter((area) => area.title.toLowerCase().includes(term));
   }, [searchTerm]);
+
+  const totalPages = Math.ceil(filteredAreas.length / itemsPerPage);
+  const paginatedAreas = useMemo(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    return filteredAreas.slice(startIndex, startIndex + itemsPerPage);
+  }, [filteredAreas, currentPage]);
 
   return (
     <main className="site-shell">
@@ -456,7 +471,7 @@ const Index = () => {
                 Nenhum curso encontrado para “{searchTerm}”.
               </p>
             )}
-            {filteredAreas.map((area) => (
+            {paginatedAreas.map((area) => (
               <Card key={area.title} className="area-card">
                 <div className="relative aspect-video overflow-hidden">
                   <img
@@ -488,6 +503,47 @@ const Index = () => {
               </Card>
             ))}
           </div>
+
+          {/* Paginação Institucional */}
+          {totalPages > 1 && (
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-2">
+              <button
+                type="button"
+                onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+                aria-label="Página anterior"
+                className="flex h-10 w-10 items-center justify-center rounded-[6px] border border-border bg-white text-muted-foreground transition-all hover:border-primary hover:text-primary disabled:pointer-events-none disabled:opacity-40"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              
+              {Array.from({ length: totalPages }).map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => setCurrentPage(i + 1)}
+                  aria-label={`Página ${i + 1}`}
+                  className={`flex h-10 w-10 items-center justify-center rounded-[6px] text-sm font-extrabold transition-all ${
+                    currentPage === i + 1 
+                      ? "bg-[#005cac] text-white shadow-md" 
+                      : "border border-border bg-white text-foreground hover:border-primary hover:text-primary"
+                  }`}
+                >
+                  {i + 1}
+                </button>
+              ))}
+
+              <button
+                type="button"
+                onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                disabled={currentPage === totalPages}
+                aria-label="Próxima página"
+                className="flex h-10 w-10 items-center justify-center rounded-[6px] border border-border bg-white text-muted-foreground transition-all hover:border-primary hover:text-primary disabled:pointer-events-none disabled:opacity-40"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
