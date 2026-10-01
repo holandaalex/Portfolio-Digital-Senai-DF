@@ -221,41 +221,51 @@ const CursoDetalhe = () => {
       >
         <div className="section-container relative grid gap-8 py-10 md:grid-cols-[1fr_320px] md:py-16 lg:gap-12">
           <div className="min-w-0 text-foreground">
-            <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.18em] text-foreground/70 sm:text-[12px]">
+            {/* Macro-Área */}
+            <p className="mb-3 text-[11px] font-black uppercase tracking-[0.2em] text-primary sm:text-[12px]">
               {macroArea}
             </p>
-            <h1 className="mb-2 break-words text-2xl font-extrabold uppercase leading-tight sm:text-3xl md:text-[2.2rem] lg:text-[2.4rem]">
+            
+            {/* Título Principal (removido uppercase para leitura mais premium/institucional) */}
+            <h1 className="mb-4 break-words text-3xl font-extrabold leading-tight tracking-tight text-foreground sm:text-4xl md:text-[2.5rem] lg:text-[2.8rem]">
               {course.title}
             </h1>
-            <p className="mb-6 text-sm italic text-foreground/80">
-              <span className="font-semibold">{course.modality}</span>{" "}
-              <span className="text-muted-foreground">|</span>{" "}
-              <span className="font-semibold">{course.level}</span>
-            </p>
-            <ul className="grid gap-2 text-[13px] text-foreground/85 sm:grid-cols-2">
-              <li className="flex items-start gap-2">
-                <Calendar className="mt-0.5 h-4 w-4 shrink-0" />
-                <span>Início: {course.startDate} | Término: 12/01/2027</span>
+            
+            {/* Modalidade e Nível com Badges Institucionais */}
+            <div className="mb-8 flex flex-wrap items-center gap-3">
+              <span className="inline-flex items-center rounded-md bg-primary/10 px-3 py-1.5 text-xs font-black uppercase tracking-wide text-primary">
+                {course.modality}
+              </span>
+              <span className="inline-flex items-center rounded-md border border-border bg-white/80 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-muted-foreground">
+                {course.level}
+              </span>
+            </div>
+            
+            {/* Grade de Informações Organizadas em "Cards" sutis */}
+            <ul className="grid gap-3 text-[13.5px] text-foreground/90 sm:grid-cols-2">
+              <li className="flex items-center gap-3 rounded-[8px] border border-border/60 bg-white/70 px-4 py-3 shadow-sm backdrop-blur-sm transition-colors hover:bg-white">
+                <Calendar className="h-[18px] w-[18px] shrink-0 text-primary" />
+                <span className="font-medium">Início: {course.startDate} <span className="text-muted-foreground mx-1">|</span> Término: 12/01/2027</span>
               </li>
-              <li className="flex items-start gap-2">
-                <Sun className="mt-0.5 h-4 w-4 shrink-0" />
-                <span>{course.shift} e Matutino</span>
+              <li className="flex items-center gap-3 rounded-[8px] border border-border/60 bg-white/70 px-4 py-3 shadow-sm backdrop-blur-sm transition-colors hover:bg-white">
+                <Sun className="h-[18px] w-[18px] shrink-0 text-primary" />
+                <span className="font-medium">{course.shift} e Matutino</span>
               </li>
-              <li className="flex items-start gap-2">
-                <Clock className="mt-0.5 h-4 w-4 shrink-0" />
-                <span>{course.hours} de aula</span>
+              <li className="flex items-center gap-3 rounded-[8px] border border-border/60 bg-white/70 px-4 py-3 shadow-sm backdrop-blur-sm transition-colors hover:bg-white">
+                <Clock className="h-[18px] w-[18px] shrink-0 text-primary" />
+                <span className="font-medium">{course.hours} de aula</span>
               </li>
-              <li className="flex items-start gap-2">
-                <CalendarDays className="mt-0.5 h-4 w-4 shrink-0" />
-                <span>Aulas de segunda a sexta</span>
+              <li className="flex items-center gap-3 rounded-[8px] border border-border/60 bg-white/70 px-4 py-3 shadow-sm backdrop-blur-sm transition-colors hover:bg-white">
+                <CalendarDays className="h-[18px] w-[18px] shrink-0 text-primary" />
+                <span className="font-medium">Aulas de segunda a sexta</span>
               </li>
-              <li className="flex items-start gap-2">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
-                <span>{course.locations.join(" | ")}</span>
+              <li className="flex items-center gap-3 rounded-[8px] border border-border/60 bg-white/70 px-4 py-3 shadow-sm backdrop-blur-sm transition-colors hover:bg-white">
+                <MapPin className="h-[18px] w-[18px] shrink-0 text-primary" />
+                <span className="font-medium">{course.locations.join(" | ")}</span>
               </li>
-              <li className="flex items-start gap-2">
-                <Clock3 className="mt-0.5 h-4 w-4 shrink-0" />
-                <span>08:00 - 17:00</span>
+              <li className="flex items-center gap-3 rounded-[8px] border border-border/60 bg-white/70 px-4 py-3 shadow-sm backdrop-blur-sm transition-colors hover:bg-white">
+                <Clock3 className="h-[18px] w-[18px] shrink-0 text-primary" />
+                <span className="font-medium">08:00 - 17:00</span>
               </li>
             </ul>
           </div>

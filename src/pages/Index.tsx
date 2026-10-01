@@ -53,10 +53,30 @@ import areaTextil from "@/assets/areas/textil-vestuario.jpg";
 // Developer - Alexsander Barreto - FIBRA
 
 const stages = [
-  { title: "Cursos Livres", hours: "20h a 160h", icon: BriefcaseBusiness },
-  { title: "Aprendizagem Industrial", hours: "400h a 800h", icon: BookOpen },
-  { title: "Qualificação Profissional", hours: "160h a 400h", icon: BadgeCheck },
-  { title: "Cursos Técnicos", hours: "800h a 1200h", icon: GraduationCap },
+  { 
+    title: "Cursos Livres", 
+    hours: "20h a 160h", 
+    icon: BriefcaseBusiness,
+    desc: "Cursos rápidos e práticos para iniciação, aperfeiçoamento e atualização tecnológica."
+  },
+  { 
+    title: "Aprendizagem Industrial", 
+    hours: "400h a 800h", 
+    icon: BookOpen,
+    desc: "Formação técnica gratuita para jovens se prepararem para o primeiro emprego na indústria."
+  },
+  { 
+    title: "Qualificação Profissional", 
+    hours: "160h a 400h", 
+    icon: BadgeCheck,
+    desc: "Aulas focadas em inserir você no mercado de trabalho com uma profissão específica rapidamente."
+  },
+  { 
+    title: "Cursos Técnicos", 
+    hours: "800h a 1200h", 
+    icon: GraduationCap,
+    desc: "Habilitação de nível médio com longa duração, altamente exigida pelas indústrias modernas."
+  },
 ];
 
 const stats = [
@@ -342,26 +362,36 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="section-container pb-12">
-        <h2 className="mb-8 text-center text-[20px] font-extrabold uppercase tracking-tight text-foreground sm:text-[22px] md:mb-10 md:text-[24px]">
+      <section className="section-container pb-14">
+        <h2 className="mb-8 text-center text-[22px] font-black uppercase tracking-tight text-primary sm:text-[24px] md:mb-12 md:text-[28px]">
           Cursos para todas as etapas da sua carreira
         </h2>
-        <div className="grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
-          {stages.map(({ title, hours, icon: Icon }) => (
-            <Card key={title} className="course-stage-card">
-              <div className="flex flex-col items-center gap-3">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-secondary shadow-[0_6px_16px_hsl(var(--soft-shadow))]">
-                  <Icon className="h-7 w-7 text-foreground" />
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {stages.map(({ title, hours, icon: Icon, desc }) => (
+            <Card key={title} className="group relative flex flex-col justify-between overflow-hidden rounded-[10px] border border-border bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+              {/* Borda superior de destaque institucional */}
+              <div className="absolute inset-x-0 top-0 h-1 bg-[#005cac] transition-all duration-300 group-hover:h-1.5" />
+              
+              <div className="flex flex-col items-start gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-[8px] bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-white">
+                  <Icon className="h-6 w-6" />
                 </div>
-                <h3 className="text-sm font-extrabold">{title}</h3>
-                <p className="text-[11px] leading-5 text-muted-foreground">
-                  Conteúdos práticos e atualizados, pensados para quem busca
-                  desenvolvimento profissional e inserção rápida no mercado de
-                  trabalho.
-                </p>
+                <div>
+                  <h3 className="mb-2 text-[16px] font-extrabold leading-snug text-foreground">
+                    {title}
+                  </h3>
+                  <p className="text-[13px] leading-relaxed text-muted-foreground">
+                    {desc}
+                  </p>
+                </div>
               </div>
-              <div className="w-full border-t border-border pt-3 text-center text-lg font-extrabold text-muted-foreground">
-                {hours}
+              <div className="mt-auto flex w-full items-center justify-between gap-2 border-t border-border/60 pt-4">
+                <span className="inline-flex shrink-0 items-center whitespace-nowrap rounded-sm bg-secondary/80 px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-foreground xl:text-[11px]">
+                  Carga Horária
+                </span>
+                <span className="shrink-0 whitespace-nowrap text-[13px] font-black text-primary xl:text-[14px]">
+                  {hours}
+                </span>
               </div>
             </Card>
           ))}
@@ -457,52 +487,56 @@ const Index = () => {
       </section>
 
       {/* Cursos em Destaque */}
-      <section className="section-container py-12 md:py-14 bg-secondary/30">
-        <div className="mx-auto mb-8 max-w-[680px] text-center">
-          <h2 className="mb-3 text-[26px] font-black uppercase text-primary sm:text-[28px] md:text-[32px]">
+      <section className="section-container py-14 md:py-16 bg-secondary/30">
+        <div className="mx-auto mb-10 max-w-[680px] text-center">
+          <h2 className="mb-4 text-[22px] font-black uppercase tracking-tight text-primary sm:text-[24px] md:text-[28px]">
             Cursos em Destaque
           </h2>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-[13px] leading-relaxed text-muted-foreground sm:text-sm">
             Confira algumas das nossas melhores opções de qualificação profissional, estruturadas para o mercado de trabalho atual.
           </p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {mockCourses.slice(0, 4).map((course) => (
-            <Card key={course.id} className="flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-              <div className="p-5">
-                <div className="mb-2 inline-flex rounded-full bg-primary/10 px-2.5 py-0.5 text-[10px] font-bold uppercase text-primary">
+            <Card key={course.id} className="group relative flex flex-col justify-between overflow-hidden rounded-[10px] border border-border bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+              {/* Barra indicativa institucional (animada no hover) */}
+              <div className="absolute inset-x-0 top-0 h-1 bg-[#f39200] transition-all duration-300 group-hover:h-1.5" />
+
+              <div className="flex flex-1 flex-col p-6 pt-7">
+                <div className="mb-4 inline-flex w-max items-center rounded-sm bg-primary/10 px-2.5 py-1 text-[10px] font-black uppercase tracking-widest text-primary">
                   {course.level}
                 </div>
-                <h3 className="mb-3 text-[15px] font-extrabold uppercase leading-snug text-foreground line-clamp-2">
+                {/* Título sem All-Caps forçado para ficar mais premium e legível */}
+                <h3 className="mb-3 text-[17px] font-extrabold leading-snug tracking-tight text-foreground line-clamp-2">
                   {course.title}
                 </h3>
-                <p className="mb-4 text-xs text-muted-foreground line-clamp-3">
+                <p className="mb-5 flex-1 text-[13px] leading-relaxed text-muted-foreground line-clamp-3">
                   {course.description}
                 </p>
-                <div className="space-y-1.5 text-[11px] text-muted-foreground font-medium">
-                  <div className="flex items-center gap-1.5">
-                    <Clock className="h-3.5 w-3.5" />
-                    {course.hours} • {course.shift}
+                <div className="space-y-2.5 text-[12px] font-medium text-foreground/80">
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-[15px] w-[15px] shrink-0 text-primary" />
+                    <span className="truncate">{course.hours} • {course.shift}</span>
                   </div>
-                  <div className="flex items-center gap-1.5">
-                    <MapPin className="h-3.5 w-3.5" />
-                    {course.locations.join(", ")}
+                  <div className="flex items-center gap-2">
+                    <MapPin className="h-[15px] w-[15px] shrink-0 text-primary" />
+                    <span className="truncate">{course.locations.join(", ")}</span>
                   </div>
                 </div>
               </div>
-              <div className="border-t border-border bg-muted/20 p-4">
+              <div className="border-t border-border/50 bg-slate-50/50 p-5">
                 <Link
                   to={`/cursos/Destaque/${course.id}`}
-                  className="flex w-full items-center justify-center rounded-[6px] bg-[#f39200] px-4 py-2.5 text-xs font-bold text-white transition-opacity hover:opacity-90"
+                  className="flex w-full items-center justify-center gap-2 rounded-[6px] bg-[#f39200] px-5 py-3 text-[13px] font-extrabold text-white shadow-md transition-all duration-300 hover:bg-[#d97c00] hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-[#f39200]/30 active:scale-[0.98]"
                 >
-                  Saiba mais
+                  Saiba mais <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
             </Card>
           ))}
         </div>
-        <div className="mt-8 text-center">
-          <Link to="/cursos" className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline">
+        <div className="mt-10 text-center">
+          <Link to="/cursos" className="inline-flex items-center gap-2 text-[14px] font-black tracking-wide text-primary transition-colors hover:text-primary/80 hover:underline">
             Ver todos os cursos <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
