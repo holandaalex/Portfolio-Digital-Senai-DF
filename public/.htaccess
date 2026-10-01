@@ -52,8 +52,8 @@
 # SECURITY HEADERS (já configurado em index.html também)
 # ===================================================================
 <IfModule mod_headers.c>
-  # Previne clickjacking
-  Header always set X-Frame-Options "DENY"
+  # Previne clickjacking mas permite PDFs do mesmo dominio
+  Header always set X-Frame-Options "SAMEORIGIN"
   
   # Força HTTPS (HSTS)
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"

@@ -231,7 +231,7 @@ function MainView({ setView }: { setView: (v: ViewState) => void }) {
                 </span>
               </div>
               <div className="flex flex-wrap items-center gap-3 px-4 py-3">
-                <a href={doc.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-[4px] border border-border bg-background px-3 py-1.5 text-[13px] text-muted-foreground shadow-sm transition-colors hover:bg-secondary/50">
+                <a href={doc.url} download target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-[4px] border border-border bg-background px-3 py-1.5 text-[13px] text-muted-foreground shadow-sm transition-colors hover:bg-secondary/50">
                   <CloudDownload className="h-4 w-4" /> Download
                 </a>
                 <a href={doc.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 rounded-[4px] border border-border bg-background px-3 py-1.5 text-[13px] text-muted-foreground shadow-sm transition-colors hover:bg-secondary/50">
