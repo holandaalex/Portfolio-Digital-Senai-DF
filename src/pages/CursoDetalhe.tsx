@@ -321,11 +321,11 @@ const CursoDetalhe = () => {
             {[
               {
                 title: "Conteúdo programático",
-                body: (course as any).description || "Módulos práticos sobre normas de segurança, operação de equipamentos, controle de qualidade e inovação aplicada ao dia a dia industrial.",
+                body: ('description' in course ? String(course.description) : "Módulos práticos sobre normas de segurança, operação de equipamentos, controle de qualidade e inovação aplicada ao dia a dia industrial."),
               },
               {
                 title: "Requisitos",
-                body: (course as any).requirements || "Idade mínima de 16 anos, ensino fundamental completo e disponibilidade no turno escolhido.",
+                body: ('requirements' in course ? String(course.requirements) : "Idade mínima de 16 anos, ensino fundamental completo e disponibilidade no turno escolhido."),
               },
               {
                 title: "Perfil profissional",

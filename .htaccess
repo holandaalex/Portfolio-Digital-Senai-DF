@@ -55,11 +55,20 @@
   # Previne clickjacking
   Header always set X-Frame-Options "DENY"
   
-  # Força HTTPS (descomente se usar SSL)
-  # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  # Força HTTPS (HSTS)
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
   
   # Previne MIME sniffing
   Header always set X-Content-Type-Options "nosniff"
+
+  # Previne cross-site scripting
+  Header always set X-XSS-Protection "1; mode=block"
+
+  # Controla Referrer
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # CSP basico (permite imagens do unsplash, google fonts e scripts mesmos dominios)
+  Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data: https://images.unsplash.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src 'self' https://api.iconify.design;"
 </IfModule>
 
 # ===================================================================
