@@ -29,6 +29,7 @@ import heroBanner from "@/assets/hero/curso-detalhe-banner.jpg";
 import contatoBg from "@/assets/hero/contato.jpg";
 import { mockCourses } from "@/pages/Cursos";
 import Footer from "@/components/Footer";
+import ContactSection from "@/components/ContactSection";
 import BackToTop from "@/components/BackToTop";
 import MobileMenu from "@/components/MobileMenu";
 import CountUpNumber from "@/components/CountUpNumber";
@@ -415,50 +416,7 @@ const CursoDetalhe = () => {
         </div>
       </section>
 
-      {/* Entre em contato */}
-      <section
-        aria-label="Entre em contato"
-        className="contact-parallax relative w-full"
-        style={{ backgroundImage: `url(${contatoBg})` }}
-      >
-        <div className="contact-overlay">
-          <div className="section-container grid gap-10 py-16 md:grid-cols-2">
-            <div className="text-primary-foreground">
-              <p className="mb-2 text-[12px] font-bold uppercase tracking-[0.18em]">
-                Precisa de ajuda?
-              </p>
-              <h2 className="mb-4 text-3xl font-extrabold uppercase md:text-4xl">
-                Entre em contato
-              </h2>
-              <p className="mb-4 text-[13px] leading-6 opacity-90">
-                Nossa equipe está pronta para orientar sua matrícula, esclarecer
-                dúvidas sobre horários e ajudar você a preparar a documentação
-                necessária.
-              </p>
-              <p className="text-[13px] leading-6 opacity-90">
-                Preencha o formulário ao lado e entraremos em contato.
-              </p>
-            </div>
-            <form className="form-premium-senai" onSubmit={(e) => e.preventDefault()}>
-              <Input placeholder="Nome Completo" className="form-field-senai" />
-              <Input
-                type="email"
-                placeholder="E-mail"
-                className="form-field-senai"
-              />
-              <Input
-                type="tel"
-                placeholder="Telefone"
-                className="form-field-senai"
-              />
-              <Textarea placeholder="Como podemos ajudar?" className="textarea-senai" />
-              <button type="submit" className="btn-senai-accent w-full mt-2">
-                Enviar Mensagem
-              </button>
-            </form>
-          </div>
-        </div>
-      </section>
+      <ContactSection />
       <Footer />
       <BackToTop />
     </main>

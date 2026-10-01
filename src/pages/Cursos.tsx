@@ -39,6 +39,7 @@ import { Input } from "@/components/ui/input";
 import senaiLogo from "@/assets/senai-logo-header.png";
 import heroBanner from "@/assets/hero/cursos-alimenticia-banner.jpg";
 import Footer from "@/components/Footer";
+import ContactSection from "@/components/ContactSection";
 import BackToTop from "@/components/BackToTop";
 import MobileMenu from "@/components/MobileMenu";
 
@@ -453,6 +454,7 @@ const Cursos = () => {
           </div>
         )}
       </section>
+      <ContactSection />
       <Footer />
       <BackToTop />
     </main>

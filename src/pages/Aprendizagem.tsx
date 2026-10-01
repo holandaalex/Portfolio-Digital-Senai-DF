@@ -14,6 +14,7 @@ import { Textarea } from "@/components/ui/textarea";
 import senaiLogo from "@/assets/senai-logo-header.png";
 import contatoBg from "@/assets/hero/contato.jpg";
 import Footer from "@/components/Footer";
+import ContactSection from "@/components/ContactSection";
 import BackToTop from "@/components/BackToTop";
 import MobileMenu from "@/components/MobileMenu";
 
@@ -84,51 +85,7 @@ const Aprendizagem = () => {
       {view === "jovem" && <JovemView setView={setView} />}
       {view === "empresa" && <EmpresaView setView={setView} />}
 
-      {/* Entre em contato (COMUM PARA TODAS AS VIEWS) */}
-      <section
-        aria-label="Entre em contato"
-        className="contact-parallax relative w-full"
-        style={{ backgroundImage: `url(${contatoBg})` }}
-      >
-        <div className="contact-overlay">
-          <div className="section-container grid gap-10 py-16 md:grid-cols-2">
-            <div className="text-primary-foreground">
-              <p className="mb-2 text-[12px] font-bold uppercase tracking-[0.18em]">
-                Precisa de ajuda?
-              </p>
-              <h2 className="mb-4 text-3xl font-extrabold uppercase md:text-4xl">
-                Entre em contato
-              </h2>
-              <p className="mb-4 text-[13px] leading-6 opacity-90">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-                erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci
-                tation ullamcorper suscipit lobortis.
-              </p>
-              <p className="text-[13px] leading-6 opacity-90">
-                Preencha o formulário e nossa equipe entrará em contato.
-              </p>
-            </div>
-            <form className="form-premium-senai" onSubmit={(e) => e.preventDefault()}>
-              <Input placeholder="Nome Completo" className="form-field-senai" />
-              <Input
-                type="email"
-                placeholder="E-mail"
-                className="form-field-senai"
-              />
-              <Input
-                type="tel"
-                placeholder="Telefone"
-                className="form-field-senai"
-              />
-              <Textarea placeholder="Como podemos ajudar?" className="textarea-senai" />
-              <button type="submit" className="btn-senai-accent w-full mt-2">
-                Enviar Mensagem
-              </button>
-            </form>
-          </div>
-        </div>
-      </section>
+      <ContactSection />
       <Footer />
       <BackToTop />
     </main>
@@ -516,9 +473,9 @@ function EmpresaView({ setView }: { setView: (v: ViewState) => void }) {
         </div>
 
         <div className="mt-12 text-center">
-          <button type="button" className="inline-flex h-12 w-full max-w-[280px] items-center justify-center rounded-[6px] bg-[#004e9a] px-6 text-[15px] font-bold text-white transition-opacity hover:opacity-90">
+          <Link to="/aprendizagem/interesse" className="inline-flex h-12 w-full max-w-[280px] items-center justify-center rounded-[6px] bg-[#004e9a] px-6 text-[15px] font-bold text-white transition-opacity hover:opacity-90">
             Tenho interesse!
-          </button>
+          </Link>
         </div>
       </div>
     </section>

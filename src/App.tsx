@@ -23,6 +23,7 @@ import Cursos from "./pages/Cursos.tsx";
 import CursoDetalhe from "./pages/CursoDetalhe.tsx";
 import PoliticaPrivacidade from "./pages/PoliticaPrivacidade.tsx";
 import Aprendizagem from "./pages/Aprendizagem.tsx";
+import JovemAprendizForm from "./pages/JovemAprendizForm.tsx";
 import SenaiPro from "./pages/SenaiPro.tsx";
 import CookieConsent from "./components/CookieConsent.tsx";
 import WhatsAppButton from "./components/WhatsAppButton.tsx";
@@ -54,6 +55,7 @@ const App = () => (
           <Route path="/cursos/:area" element={<Cursos />} />
           <Route path="/cursos" element={<Cursos />} />
           <Route path="/aprendizagem" element={<Aprendizagem />} />
+          <Route path="/aprendizagem/interesse" element={<JovemAprendizForm />} />
           <Route path="/senaipro" element={<SenaiPro />} />
           <Route
             path="/politica-de-privacidade"
