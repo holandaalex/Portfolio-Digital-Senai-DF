@@ -32,6 +32,7 @@ import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import MobileMenu from "@/components/MobileMenu";
 import CountUpNumber from "@/components/CountUpNumber";
+import { SEO } from "@/components/SEO";
 
 // Developer - Alexsander Barreto - FIBRA
 
@@ -169,6 +170,12 @@ const CursoDetalhe = () => {
 
   return (
     <main className="site-shell">
+      <SEO 
+        title={course.title} 
+        description={course.description} 
+        type="Course" 
+        courseData={course} 
+      />
       {/* Header igual ao das demais páginas */}
       <header className="border-b border-transparent bg-background">
         <div className="section-container flex h-[72px] items-center justify-between gap-4 md:h-[88px]">

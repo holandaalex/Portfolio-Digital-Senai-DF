@@ -29,6 +29,7 @@ import MobileMenu from "@/components/MobileMenu";
 import CountUpNumber from "@/components/CountUpNumber";
 import { mockCourses } from "@/pages/Cursos";
 import { Calendar, MapPin, Clock } from "lucide-react";
+import { SEO } from "@/components/SEO";
 // Banner completo da seção "Produção Alimentícia" — substitui o layout dividido (faixa rosa + foto)
 import heroFoodBanner from "@/assets/areas/SLIDERS_ProduçãoIndustrial.jpg";
 import heroSecurityBanner from "@/assets/areas/SLIDERS_Segurança.jpg";
@@ -240,6 +241,10 @@ const Index = () => {
 
   return (
     <main className="site-shell">
+      <SEO 
+        title="Início" 
+        description="Plataforma de cursos e capacitação técnica do SENAI Distrito Federal. Inscreva-se e avance em sua carreira na indústria." 
+      />
       <header className="border-b border-transparent bg-background">
         <div className="section-container flex h-[72px] items-center justify-between gap-4 md:h-[88px]">
           <img
