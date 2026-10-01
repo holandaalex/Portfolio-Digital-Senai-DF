@@ -60,10 +60,7 @@ const filterGroups: { key: FilterKey; title: string; options: string[] }[] = [
     options: [
       "Cursos Livres",
       "Cursos Técnicos",
-      "Aprendiz SENAI",
-      "Graduação",
-      "Pós-graduação",
-      "Superior Extensão",
+      "Aprendiz SENAI"
     ],
   },
   {

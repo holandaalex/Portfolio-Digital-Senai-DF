@@ -53,10 +53,10 @@ import areaTextil from "@/assets/areas/textil-vestuario.jpg";
 // Developer - Alexsander Barreto - FIBRA
 
 const stages = [
-  { title: "Profissionalizante", hours: "1200h", icon: BriefcaseBusiness },
-  { title: "Técnico", hours: "1200h", icon: BadgeCheck },
-  { title: "Superior", hours: "1200h", icon: GraduationCap },
-  { title: "Certificação", hours: "1200h", icon: BookOpen },
+  { title: "Cursos Livres", hours: "20h a 160h", icon: BriefcaseBusiness },
+  { title: "Aprendizagem Industrial", hours: "400h a 800h", icon: BookOpen },
+  { title: "Qualificação Profissional", hours: "160h a 400h", icon: BadgeCheck },
+  { title: "Cursos Técnicos", hours: "800h a 1200h", icon: GraduationCap },
 ];
 
 const stats = [

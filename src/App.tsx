@@ -24,6 +24,7 @@ import CursoDetalhe from "./pages/CursoDetalhe.tsx";
 import PoliticaPrivacidade from "./pages/PoliticaPrivacidade.tsx";
 import Aprendizagem from "./pages/Aprendizagem.tsx";
 import CookieConsent from "./components/CookieConsent.tsx";
+import WhatsAppButton from "./components/WhatsAppButton.tsx";
 
 // Cria uma instância do cliente React Query para gerenciar cache de dados
 const queryClient = new QueryClient();
@@ -61,6 +62,8 @@ const App = () => (
         </Routes>
         {/* Banner de consentimento de cookies - conformidade LGPD */}
         <CookieConsent />
+        {/* Botão flutuante global de WhatsApp */}
+        <WhatsAppButton />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
