@@ -7,9 +7,11 @@ import {
   MapPin,
   Phone,
   Youtube,
+  ExternalLink,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import senaiLogoFooter from "@/assets/senai-logo-footer.png";
+import mapThumbnail from "@/assets/map-thumbnail.jpg";
 
 // Developer - Alexsander Barreto - FIBRA
 
@@ -98,15 +100,42 @@ const Footer = () => (
             Atendimento
           </h2>
 
-          <address className="space-y-3 text-sm not-italic text-primary-foreground/78">
-            <p className="flex gap-3">
-              <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary-foreground" />
-              <span>
-                SIA Trecho 3, Lote 225, Ed. Sede FIBRA
-                <br />
-                Brasília - DF - CEP: 71200-030
-              </span>
-            </p>
+          <div className="space-y-5 text-sm not-italic text-primary-foreground/78">
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex gap-3">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary-foreground" />
+                <div className="flex flex-col gap-1.5">
+                  <span>
+                    SIA Trecho 3, Lote 225, Ed. Sede FIBRA
+                    <br />
+                    Brasília - DF - CEP: 71200-030
+                  </span>
+                  <a
+                    href="https://maps.google.com/maps?q=SIA+Trecho+3,+Lote+225,+Ed.+Sede+FIBRA,+Brasília+-+DF"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex w-max items-center gap-1.5 mt-1 text-[12px] font-extrabold uppercase tracking-wide text-accent hover:text-white transition-colors"
+                  >
+                    <ExternalLink className="h-3 w-3" /> Ver no mapa
+                  </a>
+                </div>
+              </div>
+              
+              <a
+                href="https://maps.google.com/maps?q=SIA+Trecho+3,+Lote+225,+Ed.+Sede+FIBRA,+Brasília+-+DF"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Abrir localização no Google Maps"
+                className="relative block h-[100px] w-[160px] shrink-0 overflow-hidden rounded-[8px] border border-primary-foreground/20 shadow-md transition-all hover:scale-[1.03] hover:ring-2 hover:ring-white"
+              >
+                <img
+                  src={mapThumbnail}
+                  alt="Mapa FIBRA"
+                  className="h-full w-full object-cover object-center"
+                  loading="lazy"
+                />
+              </a>
+            </div>
 
             <p className="flex gap-3">
               <Phone className="mt-0.5 h-4 w-4 shrink-0 text-primary-foreground" />
@@ -122,7 +151,7 @@ const Footer = () => (
               <Clock className="mt-0.5 h-4 w-4 shrink-0 text-primary-foreground" />
               <span>Segunda a sexta, das 8h às 18h30</span>
             </p>
-          </address>
+          </div>
         </section>
       </div>
 

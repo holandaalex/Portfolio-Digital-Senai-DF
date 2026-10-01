@@ -200,7 +200,7 @@ const CursoDetalhe = () => {
             <Link to="/aprendizagem" className="nav-link-senai">
               Aprendizagem Industrial
             </Link>
-            <Link to="/#senaipro" className="nav-link-senai">
+            <Link to="/senaipro" className="nav-link-senai">
               Senai PRO
             </Link>
             <Link to="/#contato" className="nav-link-senai">
@@ -439,18 +439,21 @@ const CursoDetalhe = () => {
                 Preencha o formulário ao lado e entraremos em contato.
               </p>
             </div>
-            <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
-              <Input placeholder="Nome" className="form-field-senai" />
+            <form className="form-premium-senai" onSubmit={(e) => e.preventDefault()}>
+              <Input placeholder="Nome Completo" className="form-field-senai" />
               <Input
-                placeholder="E-mail"
                 type="email"
+                placeholder="E-mail"
                 className="form-field-senai"
               />
-              <Input placeholder="Telefone" className="form-field-senai" />
-              <Input placeholder="Assunto" className="form-field-senai" />
-              <Textarea placeholder="Mensagem" className="textarea-senai" />
-              <button type="submit" className="btn-senai-accent w-full">
-                Enviar
+              <Input
+                type="tel"
+                placeholder="Telefone"
+                className="form-field-senai"
+              />
+              <Textarea placeholder="Como podemos ajudar?" className="textarea-senai" />
+              <button type="submit" className="btn-senai-accent w-full mt-2">
+                Enviar Mensagem
               </button>
             </form>
           </div>

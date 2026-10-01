@@ -30,7 +30,7 @@
  */
 
 import { Menu, Search, Hourglass, Share2 } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
@@ -220,6 +220,11 @@ const Cursos = () => {
   /** Busca por nome do curso (autocomplete em tempo real). */
   const [searchTerm, setSearchTerm] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Scroll automático para o topo ao carregar a página ou mudar de área
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [macroArea]);
   /** Mapa de filtros selecionados por grupo. */
   const [selected, setSelected] = useState<Record<FilterKey, string[]>>({
     level: [],
@@ -286,7 +291,7 @@ const Cursos = () => {
             <Link to="/aprendizagem" className="nav-link-senai">
               Aprendizagem Industrial
             </Link>
-            <Link to="/#senaipro" className="nav-link-senai">
+            <Link to="/senaipro" className="nav-link-senai">
               Senai PRO
             </Link>
             <Link to="/#contato" className="nav-link-senai">

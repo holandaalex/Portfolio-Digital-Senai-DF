@@ -281,9 +281,9 @@ const Index = () => {
             <a href="/aprendizagem" className="nav-link-senai">
               Aprendizagem Industrial
             </a>
-            <a href="#senaipro" className="nav-link-senai">
+            <Link to="/senaipro" className="nav-link-senai">
               Senai PRO
-            </a>
+            </Link>
             <a href="#contato" className="nav-link-senai">
               Contatos
             </a>
@@ -561,7 +561,7 @@ const Index = () => {
           {mockCourses.slice(0, 4).map((course) => (
             <Card key={course.id} className="group relative flex flex-col justify-between overflow-hidden rounded-[10px] border border-border bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
               {/* Barra indicativa institucional (animada no hover) */}
-              <div className="absolute inset-x-0 top-0 h-1 bg-[#f39200] transition-all duration-300 group-hover:h-1.5" />
+              <div className="absolute inset-x-0 top-0 h-1 bg-[#c32328] transition-all duration-300 group-hover:h-1.5" />
 
               <div className="flex flex-1 flex-col p-6 pt-7">
                 <div className="mb-4 inline-flex w-max items-center rounded-sm bg-primary/10 px-2.5 py-1 text-[10px] font-black uppercase tracking-widest text-primary">
@@ -588,7 +588,7 @@ const Index = () => {
               <div className="border-t border-border/50 bg-slate-50/50 p-5">
                 <Link
                   to={`/cursos/Destaque/${course.id}`}
-                  className="flex w-full items-center justify-center gap-2 rounded-[6px] bg-[#f39200] px-5 py-3 text-[13px] font-extrabold text-white shadow-md transition-all duration-300 hover:bg-[#d97c00] hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-[#f39200]/30 active:scale-[0.98]"
+                  className="flex w-full items-center justify-center gap-2 rounded-[6px] bg-[#c32328] px-5 py-3 text-[13px] font-extrabold text-white shadow-md transition-opacity duration-300 hover:opacity-90 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-[#c32328]/30 active:scale-[0.98]"
                 >
                   Saiba mais <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -637,24 +637,22 @@ const Index = () => {
             </p>
           </div>
 
-          <form className="rounded-[20px] bg-foreground/30 p-5 backdrop-blur-[2px] sm:rounded-[26px] sm:p-6 md:p-8">
-            <div className="grid gap-4">
-              <Input placeholder="Nome" className="form-field-senai" />
-              <Input
-                type="email"
-                placeholder="E-mail"
-                className="form-field-senai"
-              />
-              <Input
-                type="tel"
-                placeholder="Telefone"
-                className="form-field-senai"
-              />
-              <Textarea placeholder="Mensagem" className="textarea-senai" />
-              <button type="submit" className="btn-senai-accent">
-                Enviar
-              </button>
-            </div>
+          <form className="form-premium-senai" onSubmit={(e) => e.preventDefault()}>
+            <Input placeholder="Nome Completo" className="form-field-senai" />
+            <Input
+              type="email"
+              placeholder="E-mail"
+              className="form-field-senai"
+            />
+            <Input
+              type="tel"
+              placeholder="Telefone"
+              className="form-field-senai"
+            />
+            <Textarea placeholder="Como podemos ajudar?" className="textarea-senai" />
+            <button type="submit" className="btn-senai-accent w-full mt-2">
+              Enviar Mensagem
+            </button>
           </form>
         </div>
       </section>
