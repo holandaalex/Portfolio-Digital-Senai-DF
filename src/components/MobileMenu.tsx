@@ -23,7 +23,7 @@ const navItems = [
   { label: "Aprendizagem Industrial", href: "/aprendizagem", Icon: BookOpen },
   { label: "Senai PRO", href: "/senaipro", Icon: BriefcaseBusiness },
   { label: "Contatos", href: "/#contato", Icon: Phone },
-  { label: "Privacidade", href: "/politica-de-privacidade", Icon: ShieldCheck },
+  { label: "Privacidade", href: "https://www.sistemafibra.org.br/senai/politica-de-privacidade-portal-senai", Icon: ShieldCheck },
 ];
 
 const MobileMenu = ({ open, onOpenChange }: MobileMenuProps) => (
@@ -51,15 +51,29 @@ const MobileMenu = ({ open, onOpenChange }: MobileMenuProps) => (
         <nav aria-label="Menu mobile" className="grid gap-2 px-4 py-5">
           {navItems.map(({ label, href, Icon }) => (
             <SheetClose asChild key={href}>
-              <Link
-                to={href}
-                className="group flex min-h-14 items-center gap-3 rounded-[8px] border border-transparent px-3 py-3 text-sm font-bold text-foreground transition-colors hover:border-primary/15 hover:bg-secondary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-              >
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[6px] bg-primary text-primary-foreground transition-colors group-hover:bg-accent">
-                  <Icon className="h-[18px] w-[18px]" />
-                </span>
-                {label}
-              </Link>
+              {href.startsWith("http") ? (
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex min-h-14 items-center gap-3 rounded-[8px] border border-transparent px-3 py-3 text-sm font-bold text-foreground transition-colors hover:border-primary/15 hover:bg-secondary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[6px] bg-primary text-primary-foreground transition-colors group-hover:bg-accent">
+                    <Icon className="h-[18px] w-[18px]" />
+                  </span>
+                  {label}
+                </a>
+              ) : (
+                <Link
+                  to={href}
+                  className="group flex min-h-14 items-center gap-3 rounded-[8px] border border-transparent px-3 py-3 text-sm font-bold text-foreground transition-colors hover:border-primary/15 hover:bg-secondary/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[6px] bg-primary text-primary-foreground transition-colors group-hover:bg-accent">
+                    <Icon className="h-[18px] w-[18px]" />
+                  </span>
+                  {label}
+                </Link>
+              )}
             </SheetClose>
           ))}
         </nav>

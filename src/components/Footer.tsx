@@ -19,7 +19,7 @@ const quickLinks = [
   { label: "Áreas tecnológicas", href: "/#areas" },
   { label: "Cursos", href: "/#cursos" },
   { label: "Contato", href: "/#contato" },
-  { label: "Política de Privacidade", href: "/politica-de-privacidade" },
+  { label: "Política de Privacidade", href: "https://www.sistemafibra.org.br/senai/politica-de-privacidade-portal-senai" },
 ];
 
 const socials = [
@@ -84,12 +84,23 @@ const Footer = () => (
           <ul className="space-y-3">
             {quickLinks.map((item) => (
               <li key={item.href}>
-                <Link
-                  to={item.href}
-                  className="inline-flex items-center gap-2 text-sm text-primary-foreground/78 transition-colors hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground/60"
-                >
-                  {item.label}
-                </Link>
+                {item.href.startsWith("http") ? (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm text-primary-foreground/78 transition-colors hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground/60"
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    to={item.href}
+                    className="inline-flex items-center gap-2 text-sm text-primary-foreground/78 transition-colors hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground/60"
+                  >
+                    {item.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>

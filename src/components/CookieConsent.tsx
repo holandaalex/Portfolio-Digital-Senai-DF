@@ -41,9 +41,9 @@ const CookieConsent = () => {
         <p className="text-[12px] leading-5 text-muted-foreground sm:text-[13px]">
           Utilizamos cookies para melhorar sua experiência, personalizar conteúdo e analisar o tráfego do site. Ao
           continuar navegando, você concorda com nossa{" "}
-          <Link to="/politica-de-privacidade" className="font-semibold text-primary underline">
+          <a href="https://www.sistemafibra.org.br/senai/politica-de-privacidade-portal-senai" target="_blank" rel="noopener noreferrer" className="font-semibold text-primary underline">
             Política de Privacidade
-          </Link>
+          </a>
           , em conformidade com a LGPD.
         </p>
         <div className="flex shrink-0 gap-2">

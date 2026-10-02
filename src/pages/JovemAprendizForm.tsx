@@ -250,7 +250,11 @@ const JovemAprendizForm = () => {
                     Enviar Solicitação
                   </button>
                   <p className="text-xs text-center text-gray-400 mt-4">
-                    Ao enviar, você concorda com nossos termos de uso e política de privacidade. Nossa equipe entrará em contato em breve.
+                    Ao enviar, você concorda com nossos termos de uso e{" "}
+                    <a href="https://www.sistemafibra.org.br/senai/politica-de-privacidade-portal-senai" target="_blank" rel="noopener noreferrer" className="underline hover:text-white transition-colors">
+                      política de privacidade
+                    </a>
+                    . Nossa equipe entrará em contato em breve.
                   </p>
                 </form>
               </div>

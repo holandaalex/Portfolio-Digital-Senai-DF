@@ -29,13 +29,21 @@
  * - Record<K, V>: type para mapa de strings
  */
 
-import { Menu, Search, Hourglass, Share2 } from "lucide-react";
+import { Menu, Search, Hourglass, Share2, Copy, Facebook, Linkedin, Twitter, MessageCircle } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import senaiLogo from "@/assets/senai-logo-header.png";
 import heroBanner from "@/assets/hero/cursos-alimenticia-banner.jpg";
 import Footer from "@/components/Footer";
@@ -248,6 +256,43 @@ const Cursos = () => {
     });
   };
 
+  const handleShare = async (platform: string, courseTitle: string, courseId: number) => {
+    const shareUrl = `${window.location.origin}/cursos/${encodeURIComponent(macroArea)}/${courseId}`;
+    const text = `Confira o curso de ${courseTitle} no SENAI-DF!`;
+    
+    if (platform === "native" && navigator.share) {
+      try {
+        await navigator.share({
+          title: "SENAI-DF Cursos",
+          text: text,
+          url: shareUrl,
+        });
+      } catch (err) {
+        console.log("Erro ao compartilhar", err);
+      }
+      return;
+    }
+
+    switch(platform) {
+      case "whatsapp":
+        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text + " " + shareUrl)}`, "_blank");
+        break;
+      case "linkedin":
+        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`, "_blank");
+        break;
+      case "twitter":
+        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}`, "_blank");
+        break;
+      case "facebook":
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, "_blank");
+        break;
+      case "copy":
+        navigator.clipboard.writeText(`${text} ${shareUrl}`);
+        alert("Link copiado para a área de transferência!");
+        break;
+    }
+  };
+
   const filteredCourses = useMemo(() => {
     const term = searchTerm.trim().toLowerCase();
     return mockCourses.filter((c) => {
@@ -426,7 +471,7 @@ const Cursos = () => {
                   <h3 className="mb-3 text-[1.15rem] font-black leading-tight text-foreground">
                     {course.title}
                   </h3>
-                  <p className="mb-5 text-[13px] leading-relaxed text-foreground/80">
+                  <p className="mb-5 text-[13px] leading-relaxed text-foreground/80 flex-1">
                     {courseDescription}
                   </p>
                   <ul className="mb-5">
@@ -445,9 +490,46 @@ const Cursos = () => {
                   </Link>
                 </div>
                 <div className="border-t border-border bg-secondary/30 px-5 py-3 text-right flex justify-end">
-                  <button type="button" aria-label="Compartilhar" className="text-[#c32328] hover:opacity-80 transition-opacity">
-                    <Share2 className="h-[22px] w-[22px] fill-current" />
-                  </button>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <button type="button" aria-label="Compartilhar" className="text-[#c32328] hover:opacity-80 transition-opacity">
+                        <Share2 className="h-[22px] w-[22px] fill-current" />
+                      </button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-56">
+                      <DropdownMenuLabel>Compartilhar curso</DropdownMenuLabel>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem onClick={() => handleShare("whatsapp", course.title, course.id)} className="cursor-pointer">
+                        <MessageCircle className="mr-2 h-4 w-4" />
+                        <span>WhatsApp</span>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => handleShare("linkedin", course.title, course.id)} className="cursor-pointer">
+                        <Linkedin className="mr-2 h-4 w-4" />
+                        <span>LinkedIn</span>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => handleShare("facebook", course.title, course.id)} className="cursor-pointer">
+                        <Facebook className="mr-2 h-4 w-4" />
+                        <span>Facebook</span>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem onClick={() => handleShare("twitter", course.title, course.id)} className="cursor-pointer">
+                        <Twitter className="mr-2 h-4 w-4" />
+                        <span>Twitter (X)</span>
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem onClick={() => handleShare("copy", course.title, course.id)} className="cursor-pointer">
+                        <Copy className="mr-2 h-4 w-4" />
+                        <span>Copiar Link</span>
+                      </DropdownMenuItem>
+                      {/* Opcional: tentar API nativa de share se estiver no celular */}
+                      <DropdownMenuItem 
+                        className="cursor-pointer md:hidden text-primary"
+                        onClick={() => handleShare("native", course.title, course.id)}
+                      >
+                        <Share2 className="mr-2 h-4 w-4" />
+                        <span>Mais opções...</span>
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </div>
               </Card>
             ))}
