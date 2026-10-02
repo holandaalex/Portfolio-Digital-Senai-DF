@@ -1,8 +1,57 @@
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import contatoBg from "@/assets/hero/contato.jpg";
+import { useState } from "react";
+import { Loader2, CheckCircle2 } from "lucide-react";
 
 const ContactSection = () => {
+  const [formData, setFormData] = useState({
+    nome: "",
+    email: "",
+    telefone: "",
+    mensagem: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setErrorMsg("");
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/contato@alexholanda.com.br", {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({ 
+          ...formData, 
+          _subject: "Novo Contato Geral - Portal SENAI",
+          _template: "table"
+        }),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setIsSuccess(true);
+        setFormData({ nome: "", email: "", telefone: "", mensagem: "" });
+        setTimeout(() => setIsSuccess(false), 5000);
+      } else {
+        setErrorMsg(data.error || "Erro ao enviar. Tente novamente.");
+      }
+    } catch (err) {
+      setErrorMsg("Erro de conexão. Verifique sua internet.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <section
       id="contato"
@@ -27,22 +76,55 @@ const ContactSection = () => {
           </p>
         </div>
 
-        <form className="form-premium-senai" onSubmit={(e) => e.preventDefault()}>
-          <Input placeholder="Nome Completo" className="form-field-senai" />
-          <Input
-            type="email"
-            placeholder="E-mail"
-            className="form-field-senai"
-          />
-          <Input
-            type="tel"
-            placeholder="Telefone"
-            className="form-field-senai"
-          />
-          <Textarea placeholder="Como podemos ajudar?" className="textarea-senai" />
-          <button type="submit" className="btn-senai-accent w-full mt-2">
-            Enviar Mensagem
-          </button>
+        <form className="form-premium-senai" onSubmit={handleSubmit}>
+          {isSuccess ? (
+            <div className="flex flex-col items-center justify-center py-8 text-center text-white">
+              <CheckCircle2 className="mb-4 h-12 w-12 text-green-400" />
+              <h3 className="text-xl font-bold">Mensagem Enviada!</h3>
+              <p className="mt-2 text-sm text-white/80">Obrigado pelo contato. Retornaremos em breve.</p>
+            </div>
+          ) : (
+            <>
+              {errorMsg && <p className="text-center text-sm font-bold text-red-400">{errorMsg}</p>}
+              <Input 
+                name="nome"
+                value={formData.nome}
+                onChange={handleChange}
+                placeholder="Nome Completo" 
+                required
+                className="form-field-senai" 
+              />
+              <Input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="E-mail"
+                required
+                className="form-field-senai"
+              />
+              <Input
+                type="tel"
+                name="telefone"
+                value={formData.telefone}
+                onChange={handleChange}
+                placeholder="Telefone"
+                required
+                className="form-field-senai"
+              />
+              <Textarea 
+                name="mensagem"
+                value={formData.mensagem}
+                onChange={handleChange}
+                placeholder="Como podemos ajudar?" 
+                required
+                className="textarea-senai" 
+              />
+              <button disabled={isSubmitting} type="submit" className="btn-senai-accent w-full mt-2 flex items-center justify-center gap-2">
+                {isSubmitting ? <Loader2 className="h-5 w-5 animate-spin" /> : "Enviar Mensagem"}
+              </button>
+            </>
+          )}
         </form>
       </div>
     </section>
