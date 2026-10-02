@@ -12,7 +12,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import senaiLogo from "@/assets/senai-logo-header.png";
-import contatoBg from "@/assets/hero/contato.jpg";
+import jovemImg from "@/assets/aprendizagem/jovem-aprendiz.jpg";
+import empresaImg from "@/assets/aprendizagem/empresas.jpg";
 import Footer from "@/components/Footer";
 import ContactSection from "@/components/ContactSection";
 import BackToTop from "@/components/BackToTop";
@@ -118,7 +119,7 @@ function MainView({ setView }: { setView: (v: ViewState) => void }) {
       <div className="mb-10 grid gap-6 md:grid-cols-2">
         <div className="overflow-hidden rounded-[8px] border border-border bg-card shadow-sm">
           <img
-            src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&q=80&w=800"
+            src={jovemImg}
             alt="Jovem Aprendiz"
             className="h-[240px] w-full object-cover"
           />
@@ -131,7 +132,7 @@ function MainView({ setView }: { setView: (v: ViewState) => void }) {
         </div>
         <div className="overflow-hidden rounded-[8px] border border-border bg-card shadow-sm">
           <img
-            src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800"
+            src={empresaImg}
             alt="Empresas"
             className="h-[240px] w-full object-cover"
           />
@@ -254,7 +255,7 @@ function JovemView({ setView }: { setView: (v: ViewState) => void }) {
 
       <div className="mb-10 overflow-hidden rounded-[8px]">
         <img
-          src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&q=80&w=1200"
+          src={jovemImg}
           alt="Jovem Aprendiz"
           className="h-[300px] w-full object-cover md:h-[400px]"
         />
@@ -328,7 +329,7 @@ function EmpresaView({ setView }: { setView: (v: ViewState) => void }) {
 
       <div className="mb-10 overflow-hidden rounded-[8px]">
         <img
-          src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200"
+          src={empresaImg}
           alt="Empresas"
           className="h-[300px] w-full object-cover md:h-[400px]"
         />
