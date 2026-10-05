@@ -1,0 +1,153 @@
+{
+  "resources/js/assets/aprendizagem/empresas.jpg": {
+    "file": "assets/empresas-CykkfRQm.jpg",
+    "src": "resources/js/assets/aprendizagem/empresas.jpg"
+  },
+  "resources/js/assets/aprendizagem/jovem-aprendiz.jpg": {
+    "file": "assets/jovem-aprendiz-_X517TVV.jpg",
+    "src": "resources/js/assets/aprendizagem/jovem-aprendiz.jpg"
+  },
+  "resources/js/assets/areas/SLIDERS_ProduçãoIndustrial.jpg": {
+    "file": "assets/SLIDERS_ProduçãoIndustrial-CfqHo4gL.jpg",
+    "src": "resources/js/assets/areas/SLIDERS_ProduçãoIndustrial.jpg"
+  },
+  "resources/js/assets/areas/SLIDERS_Segurança.jpg": {
+    "file": "assets/SLIDERS_Segurança-CQ_ts076.jpg",
+    "src": "resources/js/assets/areas/SLIDERS_Segurança.jpg"
+  },
+  "resources/js/assets/areas/SLIDERS_SistemasEnergia.jpg": {
+    "file": "assets/SLIDERS_SistemasEnergia-BwCXLG4x.jpg",
+    "src": "resources/js/assets/areas/SLIDERS_SistemasEnergia.jpg"
+  },
+  "resources/js/assets/areas/construcao-obras.jpg": {
+    "file": "assets/construcao-obras-BEVroogm.jpg",
+    "src": "resources/js/assets/areas/construcao-obras.jpg"
+  },
+  "resources/js/assets/areas/desenvolvimento-sistemas.jpg": {
+    "file": "assets/desenvolvimento-sistemas-C7-DpPib.jpg",
+    "src": "resources/js/assets/areas/desenvolvimento-sistemas.jpg"
+  },
+  "resources/js/assets/areas/design.jpg": {
+    "file": "assets/design-CDpcly6g.jpg",
+    "src": "resources/js/assets/areas/design.jpg"
+  },
+  "resources/js/assets/areas/eletronica.jpg": {
+    "file": "assets/eletronica-CSjb0Bc2.jpg",
+    "src": "resources/js/assets/areas/eletronica.jpg"
+  },
+  "resources/js/assets/areas/gerencial.jpg": {
+    "file": "assets/gerencial-DsqSku6j.jpg",
+    "src": "resources/js/assets/areas/gerencial.jpg"
+  },
+  "resources/js/assets/areas/infraestrutura-ti.jpg": {
+    "file": "assets/infraestrutura-ti-DLCDHEyJ.jpg",
+    "src": "resources/js/assets/areas/infraestrutura-ti.jpg"
+  },
+  "resources/js/assets/areas/manufatura.jpg": {
+    "file": "assets/manufatura-JU-QtZSw.jpg",
+    "src": "resources/js/assets/areas/manufatura.jpg"
+  },
+  "resources/js/assets/areas/manutencao.jpg": {
+    "file": "assets/manutencao-BPdzE7MT.jpg",
+    "src": "resources/js/assets/areas/manutencao.jpg"
+  },
+  "resources/js/assets/areas/metalmecanica.jpg": {
+    "file": "assets/metalmecanica-CN4deFbv.jpg",
+    "src": "resources/js/assets/areas/metalmecanica.jpg"
+  },
+  "resources/js/assets/areas/operacoes-financeiras.jpg": {
+    "file": "assets/operacoes-financeiras-CvdgpsiK.jpg",
+    "src": "resources/js/assets/areas/operacoes-financeiras.jpg"
+  },
+  "resources/js/assets/areas/producao-alimenticia.jpg": {
+    "file": "assets/producao-alimenticia-BMZSeZXe.jpg",
+    "src": "resources/js/assets/areas/producao-alimenticia.jpg"
+  },
+  "resources/js/assets/areas/seguranca.jpg": {
+    "file": "assets/seguranca-B2oTNDci.jpg",
+    "src": "resources/js/assets/areas/seguranca.jpg"
+  },
+  "resources/js/assets/areas/sistemas-energia.jpg": {
+    "file": "assets/sistemas-energia-Ie_mkuqt.jpg",
+    "src": "resources/js/assets/areas/sistemas-energia.jpg"
+  },
+  "resources/js/assets/areas/textil-vestuario.jpg": {
+    "file": "assets/textil-vestuario-DMCliu92.jpg",
+    "src": "resources/js/assets/areas/textil-vestuario.jpg"
+  },
+  "resources/js/assets/hero/contato.jpg": {
+    "file": "assets/contato-CNWiK1cJ.jpg",
+    "src": "resources/js/assets/hero/contato.jpg"
+  },
+  "resources/js/assets/hero/cursos-alimenticia-banner.jpg": {
+    "file": "assets/cursos-alimenticia-banner-82F0nAJh.jpg",
+    "src": "resources/js/assets/hero/cursos-alimenticia-banner.jpg"
+  },
+  "resources/js/assets/hero/jovem-aprendiz-form.jpg": {
+    "file": "assets/jovem-aprendiz-form-CmU7gRX7.jpg",
+    "src": "resources/js/assets/hero/jovem-aprendiz-form.jpg"
+  },
+  "resources/js/assets/hero/trabalhadores.png": {
+    "file": "assets/trabalhadores-B7zJ1hu9.png",
+    "src": "resources/js/assets/hero/trabalhadores.png"
+  },
+  "resources/js/assets/map-thumbnail.jpg": {
+    "file": "assets/map-thumbnail-DACj-75e.jpg",
+    "src": "resources/js/assets/map-thumbnail.jpg"
+  },
+  "resources/js/assets/senai-logo-footer.png": {
+    "file": "assets/senai-logo-footer-BcOv8gFG.png",
+    "src": "resources/js/assets/senai-logo-footer.png"
+  },
+  "resources/js/assets/senai-logo-header.png": {
+    "file": "assets/senai-logo-header-BHQyBVCZ.png",
+    "src": "resources/js/assets/senai-logo-header.png"
+  },
+  "resources/js/assets/senai-logo.png": {
+    "file": "assets/senai-logo-ymKktnA4.png",
+    "src": "resources/js/assets/senai-logo.png"
+  },
+  "resources/js/assets/senai-pro-banner.jpg": {
+    "file": "assets/senai-pro-banner-C1L-Ek5g.jpg",
+    "src": "resources/js/assets/senai-pro-banner.jpg"
+  },
+  "resources/js/main.tsx": {
+    "file": "assets/main-Bzwc75tU.js",
+    "name": "main",
+    "src": "resources/js/main.tsx",
+    "isEntry": true,
+    "css": [
+      "assets/main-Bzc8izfX.css"
+    ],
+    "assets": [
+      "assets/senai-logo-ymKktnA4.png",
+      "assets/senai-logo-header-BHQyBVCZ.png",
+      "assets/senai-logo-footer-BcOv8gFG.png",
+      "assets/map-thumbnail-DACj-75e.jpg",
+      "assets/contato-CNWiK1cJ.jpg",
+      "assets/cursos-alimenticia-banner-82F0nAJh.jpg",
+      "assets/SLIDERS_ProduçãoIndustrial-CfqHo4gL.jpg",
+      "assets/SLIDERS_Segurança-CQ_ts076.jpg",
+      "assets/SLIDERS_SistemasEnergia-BwCXLG4x.jpg",
+      "assets/trabalhadores-B7zJ1hu9.png",
+      "assets/eletronica-CSjb0Bc2.jpg",
+      "assets/sistemas-energia-Ie_mkuqt.jpg",
+      "assets/manutencao-BPdzE7MT.jpg",
+      "assets/metalmecanica-CN4deFbv.jpg",
+      "assets/gerencial-DsqSku6j.jpg",
+      "assets/operacoes-financeiras-CvdgpsiK.jpg",
+      "assets/desenvolvimento-sistemas-C7-DpPib.jpg",
+      "assets/infraestrutura-ti-DLCDHEyJ.jpg",
+      "assets/construcao-obras-BEVroogm.jpg",
+      "assets/producao-alimenticia-BMZSeZXe.jpg",
+      "assets/design-CDpcly6g.jpg",
+      "assets/manufatura-JU-QtZSw.jpg",
+      "assets/seguranca-B2oTNDci.jpg",
+      "assets/textil-vestuario-DMCliu92.jpg",
+      "assets/jovem-aprendiz-_X517TVV.jpg",
+      "assets/empresas-CykkfRQm.jpg",
+      "assets/jovem-aprendiz-form-CmU7gRX7.jpg",
+      "assets/senai-pro-banner-C1L-Ek5g.jpg"
+    ]
+  }
+}

@@ -25,26 +25,25 @@ const ContactSection = () => {
     setErrorMsg("");
 
     try {
-      const response = await fetch("https://formsubmit.co/ajax/contato@alexholanda.com.br", {
+      // Faz uma requisição POST para a API interna do Laravel
+      const response = await fetch("/api/formularios/contato", {
         method: "POST",
         headers: { 
           "Content-Type": "application/json",
-          "Accept": "application/json"
+          "Accept": "application/json" // O Laravel entende isso e retorna JSON em vez de redirecionar em caso de erro de validação
         },
-        body: JSON.stringify({ 
-          ...formData, 
-          _subject: "Novo Contato Geral - Portal SENAI",
-          _template: "table"
-        }),
+        body: JSON.stringify(formData), // Converte os dados do formulário para string JSON
       });
 
-      const data = await response.json();
-      if (data.success) {
+      if (response.ok) {
+        // Se o Laravel retornar código HTTP 200, deu sucesso!
         setIsSuccess(true);
-        setFormData({ nome: "", email: "", telefone: "", mensagem: "" });
-        setTimeout(() => setIsSuccess(false), 5000);
+        setFormData({ nome: "", email: "", telefone: "", mensagem: "" }); // Limpa os campos
+        setTimeout(() => setIsSuccess(false), 5000); // Esconde a mensagem de sucesso após 5 segundos
       } else {
-        setErrorMsg(data.error || "Erro ao enviar. Tente novamente.");
+        // Se der erro (ex: validação falhou - HTTP 422), pegamos a mensagem que veio da API
+        const data = await response.json().catch(() => ({}));
+        setErrorMsg(data.message || "Erro ao enviar. Tente novamente.");
       }
     } catch (err) {
       setErrorMsg("Erro de conexão. Verifique sua internet.");

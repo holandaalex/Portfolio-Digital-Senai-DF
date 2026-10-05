@@ -15,7 +15,7 @@
 
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
-import "./index.css";
+import "../css/app.css";
 
 // Renderiza o App na div#root definida em index.html
 createRoot(document.getElementById("root")!).render(<App />);

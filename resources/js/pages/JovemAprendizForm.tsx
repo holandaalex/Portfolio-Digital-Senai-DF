@@ -38,26 +38,22 @@ const JovemAprendizForm = () => {
     setErrorMsg("");
 
     try {
-      const response = await fetch("https://formsubmit.co/ajax/contato@alexholanda.com.br", {
+      const response = await fetch("/api/formularios/jovem-aprendiz", {
         method: "POST",
         headers: { 
           "Content-Type": "application/json",
           "Accept": "application/json"
         },
-        body: JSON.stringify({ 
-          ...formData, 
-          _subject: `Solicitação: Jovem Aprendiz - ${formData.razaoSocial}`,
-          _template: "table"
-        }),
+        body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
-      if (data.success) {
+      if (response.ok) {
         setIsSuccess(true);
         setFormData({ razaoSocial: "", cnpj: "", nome: "", cargo: "", email: "", telefone: "", unidade: "", vagas: "", cursos: "", mensagem: "" });
         setTimeout(() => setIsSuccess(false), 8000);
       } else {
-        setErrorMsg(data.error || "Erro ao enviar. Tente novamente.");
+        const data = await response.json().catch(() => ({}));
+        setErrorMsg(data.message || "Erro ao enviar. Tente novamente.");
       }
     } catch (err) {
       setErrorMsg("Erro de conexão. Verifique sua internet.");

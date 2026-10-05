@@ -61,78 +61,137 @@ const stats = [
   { value: 6561, label: "Alunos em evolução" },
 ];
 
-const CadastroInteresseDialog = () => (
-  <Dialog>
-    <DialogTrigger asChild>
-      <button
-        type="button"
-        className="w-full rounded-[6px] bg-[#f39200] px-4 py-3 text-[14px] font-bold text-white shadow-md transition-all hover:bg-[#d97c00] hover:shadow-lg active:scale-[0.98]"
-      >
-        Cadastro de interesse
-      </button>
-    </DialogTrigger>
-    <DialogContent className="sm:max-w-[550px] p-0 overflow-hidden border-0 shadow-2xl rounded-xl">
-      <div className="bg-white px-8 py-8 md:px-10 md:py-10">
-        <DialogHeader className="mb-6">
-          <DialogTitle className="text-[26px] font-extrabold text-[#2a3b4c] tracking-tight">
-            Cadastro de interesse
-          </DialogTitle>
-          <DialogDescription className="text-[15px] text-[#5a6a7c] mt-2.5 leading-relaxed">
-            Preencha o cadastro de interesse e seja avisado quando forem abertas novas turmas.
-          </DialogDescription>
-        </DialogHeader>
-        
-        <form className="grid gap-6" onSubmit={(e) => { e.preventDefault(); alert('Cadastro enviado para o gestor!'); }}>
-          <div className="grid gap-2">
-            <Label htmlFor="nome" className="text-[12px] font-black text-[#005cac] uppercase tracking-wider">NOME*</Label>
-            <Input id="nome" required className="bg-[#f2f6fa] border-2 border-transparent h-12 text-[15px] text-[#2a3b4c] rounded-lg transition-all duration-200 focus-visible:ring-0 focus-visible:border-[#005cac] focus-visible:bg-white hover:bg-[#eaf0f5]" />
-          </div>
+const CadastroInteresseDialog = ({ cursoNome }: { cursoNome?: string }) => {
+  const [formData, setFormData] = useState({
+    nome: '',
+    tel1: '',
+    tel2: '',
+    email: '',
+    turno: 'matutino',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleTurnoChange = (value: string) => {
+    setFormData({ ...formData, turno: value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setErrorMsg("");
+
+    try {
+      const response = await fetch("/api/formularios/interesse-curso", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify({ ...formData, curso: cursoNome || 'Não especificado' }),
+      });
+
+      if (response.ok) {
+        setIsSuccess(true);
+        setFormData({ nome: '', tel1: '', tel2: '', email: '', turno: 'matutino' });
+        setTimeout(() => setIsSuccess(false), 5000);
+      } else {
+        const data = await response.json().catch(() => ({}));
+        setErrorMsg(data.message || "Erro ao enviar. Tente novamente.");
+      }
+    } catch (err) {
+      setErrorMsg("Erro de conexão. Verifique sua internet.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <button
+          type="button"
+          className="w-full rounded-[6px] bg-[#f39200] px-4 py-3 text-[14px] font-bold text-white shadow-md transition-all hover:bg-[#d97c00] hover:shadow-lg active:scale-[0.98]"
+        >
+          Cadastro de interesse
+        </button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[550px] p-0 overflow-hidden border-0 shadow-2xl rounded-xl">
+        <div className="bg-white px-8 py-8 md:px-10 md:py-10">
+          <DialogHeader className="mb-6">
+            <DialogTitle className="text-[26px] font-extrabold text-[#2a3b4c] tracking-tight">
+              Cadastro de interesse
+            </DialogTitle>
+            <DialogDescription className="text-[15px] text-[#5a6a7c] mt-2.5 leading-relaxed">
+              Preencha o cadastro de interesse e seja avisado quando forem abertas novas turmas.
+            </DialogDescription>
+          </DialogHeader>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <div className="grid gap-2">
-              <Label htmlFor="tel1" className="text-[12px] font-black text-[#005cac] uppercase tracking-wider">TELEFONE (opção 1)*</Label>
-              <Input id="tel1" required placeholder="(XX) - _____-____" className="bg-[#f2f6fa] border-2 border-transparent h-12 text-[15px] text-[#2a3b4c] rounded-lg transition-all duration-200 focus-visible:ring-0 focus-visible:border-[#005cac] focus-visible:bg-white hover:bg-[#eaf0f5] placeholder:text-[#9aa7b5]" />
+          {isSuccess && (
+            <div className="mb-6 p-4 bg-green-50 border border-green-200 text-green-700 rounded-lg text-[14px] font-medium text-center">
+              Interesse registrado com sucesso! Entraremos em contato em breve.
             </div>
-            <div className="grid gap-2">
-              <Label htmlFor="tel2" className="text-[12px] font-black text-[#005cac] uppercase tracking-wider">TELEFONE (opção 2)</Label>
-              <Input id="tel2" placeholder="(XX) - _____-____" className="bg-[#f2f6fa] border-2 border-transparent h-12 text-[15px] text-[#2a3b4c] rounded-lg transition-all duration-200 focus-visible:ring-0 focus-visible:border-[#005cac] focus-visible:bg-white hover:bg-[#eaf0f5] placeholder:text-[#9aa7b5]" />
+          )}
+          {errorMsg && (
+            <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-lg text-[14px] font-medium text-center">
+              {errorMsg}
             </div>
-          </div>
+          )}
 
-          <div className="grid gap-2">
-            <Label htmlFor="email" className="text-[12px] font-black text-[#005cac] uppercase tracking-wider">E-MAIL*</Label>
-            <Input id="email" type="email" required className="bg-[#f2f6fa] border-2 border-transparent h-12 text-[15px] text-[#2a3b4c] rounded-lg transition-all duration-200 focus-visible:ring-0 focus-visible:border-[#005cac] focus-visible:bg-white hover:bg-[#eaf0f5]" />
-          </div>
+          <form className="grid gap-6" onSubmit={handleSubmit}>
+            <div className="grid gap-2">
+              <Label htmlFor="nome" className="text-[12px] font-black text-[#005cac] uppercase tracking-wider">NOME*</Label>
+              <Input id="nome" name="nome" value={formData.nome} onChange={handleChange} required className="bg-[#f2f6fa] border-2 border-transparent h-12 text-[15px] text-[#2a3b4c] rounded-lg transition-all duration-200 focus-visible:ring-0 focus-visible:border-[#005cac] focus-visible:bg-white hover:bg-[#eaf0f5]" />
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="grid gap-2">
+                <Label htmlFor="tel1" className="text-[12px] font-black text-[#005cac] uppercase tracking-wider">TELEFONE (opção 1)*</Label>
+                <Input id="tel1" name="tel1" value={formData.tel1} onChange={handleChange} required placeholder="(XX) - _____-____" className="bg-[#f2f6fa] border-2 border-transparent h-12 text-[15px] text-[#2a3b4c] rounded-lg transition-all duration-200 focus-visible:ring-0 focus-visible:border-[#005cac] focus-visible:bg-white hover:bg-[#eaf0f5] placeholder:text-[#9aa7b5]" />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="tel2" className="text-[12px] font-black text-[#005cac] uppercase tracking-wider">TELEFONE (opção 2)</Label>
+                <Input id="tel2" name="tel2" value={formData.tel2} onChange={handleChange} placeholder="(XX) - _____-____" className="bg-[#f2f6fa] border-2 border-transparent h-12 text-[15px] text-[#2a3b4c] rounded-lg transition-all duration-200 focus-visible:ring-0 focus-visible:border-[#005cac] focus-visible:bg-white hover:bg-[#eaf0f5] placeholder:text-[#9aa7b5]" />
+              </div>
+            </div>
 
-          <div className="grid gap-3 mt-2">
-            <Label className="text-[12px] font-black text-[#005cac] uppercase tracking-wider">TURNO*</Label>
-            <RadioGroup defaultValue="matutino" className="flex flex-wrap gap-5 md:gap-8">
-              <div className="flex items-center space-x-2.5">
-                <RadioGroupItem value="matutino" id="r1" className="w-5 h-5 border-2 text-[#005cac] border-[#005cac] focus:ring-[#005cac]" />
-                <Label htmlFor="r1" className="font-medium text-[15px] text-[#4a5a6c] cursor-pointer">Matutino</Label>
-              </div>
-              <div className="flex items-center space-x-2.5">
-                <RadioGroupItem value="vespertino" id="r2" className="w-5 h-5 border-2 text-[#005cac] border-[#005cac] focus:ring-[#005cac]" />
-                <Label htmlFor="r2" className="font-medium text-[15px] text-[#4a5a6c] cursor-pointer">Vespertino</Label>
-              </div>
-              <div className="flex items-center space-x-2.5">
-                <RadioGroupItem value="noturno" id="r3" className="w-5 h-5 border-2 text-[#005cac] border-[#005cac] focus:ring-[#005cac]" />
-                <Label htmlFor="r3" className="font-medium text-[15px] text-[#4a5a6c] cursor-pointer">Noturno</Label>
-              </div>
-            </RadioGroup>
-          </div>
+            <div className="grid gap-2">
+              <Label htmlFor="email" className="text-[12px] font-black text-[#005cac] uppercase tracking-wider">E-MAIL*</Label>
+              <Input id="email" name="email" value={formData.email} onChange={handleChange} type="email" required className="bg-[#f2f6fa] border-2 border-transparent h-12 text-[15px] text-[#2a3b4c] rounded-lg transition-all duration-200 focus-visible:ring-0 focus-visible:border-[#005cac] focus-visible:bg-white hover:bg-[#eaf0f5]" />
+            </div>
 
-          <div className="mt-4">
-            <Button type="submit" className="w-full bg-[#f39200] hover:bg-[#d97c00] text-white font-extrabold text-[16px] h-14 rounded-lg shadow-lg hover:shadow-xl transition-all active:scale-[0.98]">
-              Enviar
-            </Button>
-            <p className="text-[12px] text-[#8a9aa8] font-medium mt-4">* Campos obrigatórios</p>
-          </div>
-        </form>
-      </div>
-    </DialogContent>
-  </Dialog>
-);
+            <div className="grid gap-3 mt-2">
+              <Label className="text-[12px] font-black text-[#005cac] uppercase tracking-wider">TURNO*</Label>
+              <RadioGroup value={formData.turno} onValueChange={handleTurnoChange} className="flex flex-wrap gap-5 md:gap-8">
+                <div className="flex items-center space-x-2.5">
+                  <RadioGroupItem value="matutino" id="r1" className="w-5 h-5 border-2 text-[#005cac] border-[#005cac] focus:ring-[#005cac]" />
+                  <Label htmlFor="r1" className="font-medium text-[15px] text-[#4a5a6c] cursor-pointer">Matutino</Label>
+                </div>
+                <div className="flex items-center space-x-2.5">
+                  <RadioGroupItem value="vespertino" id="r2" className="w-5 h-5 border-2 text-[#005cac] border-[#005cac] focus:ring-[#005cac]" />
+                  <Label htmlFor="r2" className="font-medium text-[15px] text-[#4a5a6c] cursor-pointer">Vespertino</Label>
+                </div>
+                <div className="flex items-center space-x-2.5">
+                  <RadioGroupItem value="noturno" id="r3" className="w-5 h-5 border-2 text-[#005cac] border-[#005cac] focus:ring-[#005cac]" />
+                  <Label htmlFor="r3" className="font-medium text-[15px] text-[#4a5a6c] cursor-pointer">Noturno</Label>
+                </div>
+              </RadioGroup>
+            </div>
+
+            <div className="mt-4">
+              <Button type="submit" disabled={isSubmitting} className="w-full bg-[#f39200] hover:bg-[#d97c00] text-white font-extrabold text-[16px] h-14 rounded-lg shadow-lg hover:shadow-xl transition-all active:scale-[0.98] disabled:opacity-50">
+                {isSubmitting ? "Enviando..." : "Enviar"}
+              </Button>
+              <p className="text-[12px] text-[#8a9aa8] font-medium mt-4">* Campos obrigatórios</p>
+            </div>
+          </form>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+};
 
 const CursoDetalhe = () => {
   const { area, id } = useParams<{ area?: string; id?: string }>();
@@ -299,7 +358,7 @@ const CursoDetalhe = () => {
                 <p className="mb-5 text-[13px] leading-relaxed text-foreground/80">
                   Não encontrou a turma na escola ou no horário que gostaria? Preencha o cadastro de interesse e seja avisado quando forem abertas novas turmas.
                 </p>
-                <CadastroInteresseDialog />
+                <CadastroInteresseDialog cursoNome={course.title} />
               </>
             ) : (
               <>
@@ -307,7 +366,7 @@ const CursoDetalhe = () => {
                   Não há vagas abertas no momento. Preencha o cadastro de interesse e seja avisado quando forem abertas novas turmas.
                 </p>
                 <hr className="mb-4 border-border" />
-                <CadastroInteresseDialog />
+                <CadastroInteresseDialog cursoNome={course.title} />
               </>
             )}
           </aside>
