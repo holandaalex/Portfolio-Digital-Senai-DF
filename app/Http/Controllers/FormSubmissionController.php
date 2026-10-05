@@ -19,53 +19,75 @@ use Illuminate\Support\Facades\Mail;
  */
 class FormSubmissionController extends Controller
 {
-    /**
-     * Recebe e processa o formulário de Contato Geral
-     * 
-     * @param ContactRequest $request Valida os dados antes de entrar neste método
-     */
     public function contact(ContactRequest $request): JsonResponse
     {
+        $payload = $request->payload();
+        
+        \App\Models\Formulario::create([
+            'tipo' => 'contato',
+            'nome' => $payload['name'],
+            'email' => $payload['email'],
+            'telefone' => $payload['phone'],
+            'mensagem' => $payload['message'],
+            'status' => 'novo'
+        ]);
+
         return $this->deliver(
-            new ContactMessageReceived($request->payload()),
+            new ContactMessageReceived($payload),
             'Mensagem enviada! Nossa equipe retornará em breve.',
         );
     }
 
-    /**
-     * Recebe e processa o formulário de solicitação para Jovem Aprendiz
-     */
     public function apprenticeship(ApprenticeshipRequest $request): JsonResponse
     {
+        $payload = $request->payload();
+        
+        \App\Models\Formulario::create([
+            'tipo' => 'jovem_aprendiz',
+            'nome' => $payload['name'],
+            'email' => $payload['email'],
+            'telefone' => $payload['phone'],
+            'dados_adicionais' => [
+                'birth_date' => $payload['birth_date'],
+                'neighborhood' => $payload['neighborhood'],
+                'city' => $payload['city'],
+                'has_experience' => $payload['has_experience'],
+                'experience_details' => $payload['experience_details'],
+            ],
+            'status' => 'novo'
+        ]);
+
         return $this->deliver(
-            new ApprenticeshipRequested($request->payload()),
+            new ApprenticeshipRequested($payload),
             'Solicitação recebida! Um consultor entrará em contato em até 48 horas úteis.',
         );
     }
 
-    /**
-     * Recebe e processa o formulário de cadastro de interesse em cursos (Modal)
-     */
     public function courseInterest(CourseInterestRequest $request): JsonResponse
     {
+        $payload = $request->payload();
+
+        \App\Models\Formulario::create([
+            'tipo' => 'interesse_curso',
+            'nome' => $payload['name'],
+            'email' => $payload['email'],
+            'telefone' => $payload['phone'],
+            'dados_adicionais' => [
+                'course_id' => $payload['course_id'],
+                'course_title' => $payload['course_title']
+            ],
+            'status' => 'novo'
+        ]);
+
         return $this->deliver(
-            new CourseInterestRegistered($request->payload()),
+            new CourseInterestRegistered($payload),
             'Cadastro realizado! Avisaremos você quando abrirem novas turmas.',
         );
     }
 
-    /**
-     * Método auxiliar (reutilizável) que dispara o e-mail e retorna a resposta padrão para o React
-     * 
-     * @param Mailable $mail A classe de e-mail que será enviada
-     * @param string $message A mensagem de sucesso que aparecerá na tela do usuário
-     */
     private function deliver(Mailable $mail, string $message): JsonResponse
     {
-        // Envia o e-mail para o destinatário configurado em config/forms.php
         Mail::to(config('forms.recipient'))->send($mail);
-
-        // Retorna um JSON para o frontend (React) saber que deu tudo certo
         return response()->json(['message' => $message]);
     }
 }

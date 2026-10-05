@@ -20,6 +20,7 @@ const quickLinks = [
   { label: "Cursos", href: "/#cursos" },
   { label: "Contato", href: "/#contato" },
   { label: "Política de Privacidade", href: "https://www.sistemafibra.org.br/senai/politica-de-privacidade-portal-senai" },
+  { label: "Acesso Restrito", href: "/admin" }, // admin
 ];
 
 const socials = [

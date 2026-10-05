@@ -60,6 +60,10 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        senai: {
+          red: "#c32328",
+          dark: "#00274c",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

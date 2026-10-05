@@ -12,6 +12,8 @@
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { AuthProvider } from "./lib/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
@@ -24,24 +26,20 @@ import SenaiPro from "./pages/SenaiPro.tsx";
 import CookieConsent from "./components/CookieConsent.tsx";
 import WhatsAppButton from "./components/WhatsAppButton.tsx";
 
-// Cria uma instância do cliente React Query para gerenciar cache de dados
+// Admin Pages
+import AdminLogin from "./pages/admin/AdminLogin.tsx";
+import AdminDashboard from "./pages/admin/AdminDashboard.tsx";
+import AdminFormularios from "./pages/admin/AdminFormularios.tsx";
+import AdminLayout from "./components/admin/AdminLayout.tsx";
+
 const queryClient = new QueryClient();
 
-/**
- * Configuração de Rotas:
- * - /                              → Página inicial com hero e busca
- * - /cursos                        → Lista todos os cursos disponíveis
- * - /cursos/:area                  → Filtra cursos por área (ex: /cursos/Alimentos)
- * - /cursos/:area/:id              → Detalhe de um curso específico
- * - /senaipro                      → Página do programa SENAI PRO
- * - *                              → Qualquer outra rota não encontrada (página 404)
- * Nota: As rotas mais específicas devem estar ANTES das genéricas!
- */
 const App = () => (
   <QueryClientProvider client={queryClient}>
-
+    <AuthProvider>
       <BrowserRouter>
         <Routes>
+          {/* Rotas Públicas */}
           <Route path="/" element={<Index />} />
           <Route path="/cursos/:area/:id" element={<CursoDetalhe />} />
           <Route path="/cursos/:area" element={<Cursos />} />
@@ -50,15 +48,27 @@ const App = () => (
           <Route path="/aprendizagem/interesse" element={<JovemAprendizForm />} />
           <Route path="/senaipro" element={<SenaiPro />} />
 
-          {/* Rota coringa - deve estar sempre por último! */}
+          {/* Rotas Administrativas */}
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route 
+            path="/admin" 
+            element={
+              <ProtectedRoute>
+                <AdminLayout />
+              </ProtectedRoute>
+            } 
+          >
+            <Route index element={<AdminDashboard />} />
+            <Route path="formularios" element={<AdminFormularios />} />
+            <Route path="cursos" element={<div className="p-8">Módulo de Cursos em construção</div>} />
+          </Route>
+
           <Route path="*" element={<NotFound />} />
         </Routes>
-        {/* Banner de consentimento de cookies - conformidade LGPD */}
         <CookieConsent />
-        {/* Botão flutuante global de WhatsApp */}
         <WhatsAppButton />
       </BrowserRouter>
-
+    </AuthProvider>
   </QueryClientProvider>
 );
 

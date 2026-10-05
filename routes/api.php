@@ -1,16 +1,36 @@
 <?php
 
-use App\Http\Controllers\FormSubmissionController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FormSubmissionController;
+use App\Http\Controllers\AuthController;
 
-// Grupo de rotas responsável por receber os envios dos formulários do frontend (React)
-Route::prefix('formularios')
-    ->middleware('throttle:forms') // Proteção anti-spam: limita a quantidade de envios por minuto
-    ->controller(FormSubmissionController::class) // Define que todas as rotas abaixo usarão este controlador
-    ->name('forms.')
-    ->group(function () {
-        // Cada rota corresponde a um formulário específico no frontend
-        Route::post('contato', 'contact')->name('contact'); // Formulário de contato geral
-        Route::post('jovem-aprendiz', 'apprenticeship')->name('apprenticeship'); // Formulário de Jovem Aprendiz
-        Route::post('interesse-curso', 'courseInterest')->name('course-interest'); // Modal de interesse em cursos
-    });
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+*/
+
+// Rotas de Autenticação do Painel Administrativo
+Route::post('/login', [AuthController::class, 'login']);
+
+use App\Http\Controllers\AdminController;
+
+// Rotas Protegidas do Painel Administrativo
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/user', [AuthController::class, 'user']);
+    
+    // Rotas do Painel
+    Route::get('/admin/metrics', [AdminController::class, 'metrics']);
+    Route::get('/admin/formularios', [AdminController::class, 'formularios']);
+});
+
+// =======================================================
+// ROTAS DE FORMULÁRIOS PÚBLICOS (SITE)
+// =======================================================
+Route::middleware('throttle:5,1')->group(function () {
+    Route::post('/formularios/contato', [FormSubmissionController::class, 'contato']);
+    Route::post('/formularios/aprendizagem', [FormSubmissionController::class, 'jovemAprendiz']);
+    Route::post('/formularios/curso', [FormSubmissionController::class, 'cursoInteresse']);
+});
