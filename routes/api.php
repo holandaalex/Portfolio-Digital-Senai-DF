@@ -30,7 +30,7 @@ Route::middleware('auth:sanctum')->group(function () {
 // ROTAS DE FORMULÁRIOS PÚBLICOS (SITE)
 // =======================================================
 Route::middleware('throttle:5,1')->group(function () {
-    Route::post('/formularios/contato', [FormSubmissionController::class, 'contato']);
-    Route::post('/formularios/aprendizagem', [FormSubmissionController::class, 'jovemAprendiz']);
-    Route::post('/formularios/curso', [FormSubmissionController::class, 'cursoInteresse']);
+    Route::post('/formularios/contato', [FormSubmissionController::class, 'contact']);
+    Route::post('/formularios/jovem-aprendiz', [FormSubmissionController::class, 'apprenticeship']);
+    Route::post('/formularios/interesse-curso', [FormSubmissionController::class, 'courseInterest']);
 });

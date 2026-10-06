@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { FileText, BookOpen, Users, TrendingUp } from 'lucide-react';
+import { FileText, BookOpen, Users, Mail, GraduationCap } from 'lucide-react';
 
 interface Metrics {
-  novos_formularios: number;
-  cursos_ativos: number;
-  acessos_hoje: number;
+  total_formularios: number;
+  jovem_aprendiz: number;
+  interesse_curso: number;
+  contatos: number;
 }
 
 export default function AdminDashboard() {
   const [metrics, setMetrics] = useState<Metrics>({
-    novos_formularios: 0,
-    cursos_ativos: 0,
-    acessos_hoje: 0
+    total_formularios: 0,
+    jovem_aprendiz: 0,
+    interesse_curso: 0,
+    contatos: 0
   });
   const [isLoading, setIsLoading] = useState(true);
 
@@ -33,40 +35,40 @@ export default function AdminDashboard() {
 
   const statCards = [
     {
-      title: 'Novos Formulários',
-      value: metrics.novos_formularios,
+      title: 'Total de Formulários',
+      value: metrics.total_formularios,
       icon: FileText,
       color: 'text-blue-600',
       bg: 'bg-blue-50',
       border: 'border-blue-200',
-      desc: 'Enviados mas não lidos'
+      desc: 'Todas as submissões'
     },
     {
-      title: 'Acessos Hoje',
-      value: metrics.acessos_hoje,
-      icon: Users,
+      title: 'Interesse em Cursos',
+      value: metrics.interesse_curso,
+      icon: BookOpen,
       color: 'text-emerald-600',
       bg: 'bg-emerald-50',
       border: 'border-emerald-200',
-      desc: 'Submissões de hoje'
+      desc: 'Pré-matrículas e dúvidas'
     },
     {
-      title: 'Cursos Ativos',
-      value: metrics.cursos_ativos,
-      icon: BookOpen,
+      title: 'Jovem Aprendiz',
+      value: metrics.jovem_aprendiz,
+      icon: GraduationCap,
       color: 'text-purple-600',
       bg: 'bg-purple-50',
       border: 'border-purple-200',
-      desc: 'Cadastrados no portal'
+      desc: 'Candidatos inscritos'
     },
     {
-      title: 'Taxa de Conversão',
-      value: '12%',
-      icon: TrendingUp,
+      title: 'Fale Conosco',
+      value: metrics.contatos,
+      icon: Mail,
       color: 'text-orange-600',
       bg: 'bg-orange-50',
       border: 'border-orange-200',
-      desc: 'Média de interesse'
+      desc: 'Mensagens gerais'
     }
   ];
 

@@ -90,7 +90,14 @@ const CadastroInteresseDialog = ({ cursoNome }: { cursoNome?: string }) => {
       const response = await fetch("/api/formularios/interesse-curso", {
         method: "POST",
         headers: { "Content-Type": "application/json", "Accept": "application/json" },
-        body: JSON.stringify({ ...formData, curso: cursoNome || 'Não especificado' }),
+        body: JSON.stringify({ 
+          nome: formData.nome,
+          telefone: formData.tel1,
+          telefoneAlternativo: formData.tel2,
+          email: formData.email,
+          turno: formData.turno,
+          curso: cursoNome || 'Não especificado' 
+        }),
       });
 
       if (response.ok) {

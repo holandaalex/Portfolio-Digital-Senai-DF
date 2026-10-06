@@ -11,12 +11,11 @@ class AdminController extends Controller
 {
     public function metrics()
     {
-        $today = Carbon::today();
-
         return response()->json([
-            'novos_formularios' => Formulario::where('status', 'novo')->count(),
-            'cursos_ativos' => 0, // Cursos virão de outra tabela ou arquivo por enquanto
-            'acessos_hoje' => Formulario::whereDate('created_at', $today)->count(),
+            'total_formularios' => Formulario::count(),
+            'jovem_aprendiz' => Formulario::where('tipo', 'jovem_aprendiz')->count(),
+            'interesse_curso' => Formulario::where('tipo', 'interesse_curso')->count(),
+            'contatos' => Formulario::where('tipo', 'contato')->count(),
         ]);
     }
 
@@ -24,11 +23,11 @@ class AdminController extends Controller
     {
         $query = Formulario::query()->orderBy('created_at', 'desc');
 
-        if ($request->has('tipo')) {
+        if ($request->filled('tipo')) {
             $query->where('tipo', $request->tipo);
         }
 
-        if ($request->has('status')) {
+        if ($request->filled('status')) {
             $query->where('status', $request->status);
         }
 

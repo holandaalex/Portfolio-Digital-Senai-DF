@@ -25,10 +25,10 @@ class FormSubmissionController extends Controller
         
         \App\Models\Formulario::create([
             'tipo' => 'contato',
-            'nome' => $payload['name'],
+            'nome' => $payload['nome'],
             'email' => $payload['email'],
-            'telefone' => $payload['phone'],
-            'mensagem' => $payload['message'],
+            'telefone' => $payload['telefone'],
+            'mensagem' => $payload['mensagem'],
             'status' => 'novo'
         ]);
 
@@ -44,15 +44,17 @@ class FormSubmissionController extends Controller
         
         \App\Models\Formulario::create([
             'tipo' => 'jovem_aprendiz',
-            'nome' => $payload['name'],
+            'nome' => $payload['nome'],
             'email' => $payload['email'],
-            'telefone' => $payload['phone'],
+            'telefone' => $payload['telefone'],
+            'mensagem' => $payload['mensagem'] ?? null,
             'dados_adicionais' => [
-                'birth_date' => $payload['birth_date'],
-                'neighborhood' => $payload['neighborhood'],
-                'city' => $payload['city'],
-                'has_experience' => $payload['has_experience'],
-                'experience_details' => $payload['experience_details'],
+                'razaoSocial' => $payload['razaoSocial'],
+                'cnpj' => $payload['cnpj'],
+                'cargo' => $payload['cargo'],
+                'unidade' => $payload['unidade'],
+                'vagas' => $payload['vagas'],
+                'cursos' => $payload['cursos'],
             ],
             'status' => 'novo'
         ]);
@@ -69,12 +71,14 @@ class FormSubmissionController extends Controller
 
         \App\Models\Formulario::create([
             'tipo' => 'interesse_curso',
-            'nome' => $payload['name'],
+            'nome' => $payload['nome'],
             'email' => $payload['email'],
-            'telefone' => $payload['phone'],
+            'telefone' => $payload['telefone'],
             'dados_adicionais' => [
-                'course_id' => $payload['course_id'],
-                'course_title' => $payload['course_title']
+                'curso' => $payload['curso'],
+                'area' => $payload['area'],
+                'telefoneAlternativo' => $payload['telefoneAlternativo'],
+                'turno' => $payload['turno']
             ],
             'status' => 'novo'
         ]);
