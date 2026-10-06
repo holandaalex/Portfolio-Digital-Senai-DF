@@ -34,8 +34,8 @@ import { mockCourses } from "@/pages/Cursos";
 import { Calendar, MapPin, Clock } from "lucide-react";
 import { SEO } from "@/components/SEO";
 // Banner completo da seção "Produção Alimentícia" — substitui o layout dividido (faixa rosa + foto)
-import heroFoodBanner from "@/assets/areas/SLIDERS_ProduçãoIndustrial.jpg";
-import heroSecurityBanner from "@/assets/areas/SLIDERS_Segurança.jpg";
+import heroFoodBanner from "@/assets/areas/SLIDERS_ProducaoIndustrial.jpg";
+import heroSecurityBanner from "@/assets/areas/SLIDERS_Seguranca.jpg";
 import heroEnergyBanner from "@/assets/areas/SLIDERS_SistemasEnergia.jpg";
 import heroWorkers from "@/assets/hero/trabalhadores.png";
 import contactHero from "@/assets/hero/contato.jpg";

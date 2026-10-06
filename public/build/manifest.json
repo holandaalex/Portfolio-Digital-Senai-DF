@@ -1,6 +1,6 @@
 {
   "node_modules/canvg/lib/index.es.js": {
-    "file": "assets/index.es-CY85OSoC.js",
+    "file": "assets/index.es-aZmtMgIY.js",
     "name": "index.es",
     "src": "node_modules/canvg/lib/index.es.js",
     "isDynamicEntry": true,
@@ -28,13 +28,13 @@
     "file": "assets/jovem-aprendiz-_X517TVV.jpg",
     "src": "resources/js/assets/aprendizagem/jovem-aprendiz.jpg"
   },
-  "resources/js/assets/areas/SLIDERS_ProduçãoIndustrial.jpg": {
-    "file": "assets/SLIDERS_ProduçãoIndustrial-CfqHo4gL.jpg",
-    "src": "resources/js/assets/areas/SLIDERS_ProduçãoIndustrial.jpg"
+  "resources/js/assets/areas/SLIDERS_ProducaoIndustrial.jpg": {
+    "file": "assets/SLIDERS_ProducaoIndustrial-CfqHo4gL.jpg",
+    "src": "resources/js/assets/areas/SLIDERS_ProducaoIndustrial.jpg"
   },
-  "resources/js/assets/areas/SLIDERS_Segurança.jpg": {
-    "file": "assets/SLIDERS_Segurança-CQ_ts076.jpg",
-    "src": "resources/js/assets/areas/SLIDERS_Segurança.jpg"
+  "resources/js/assets/areas/SLIDERS_Seguranca.jpg": {
+    "file": "assets/SLIDERS_Seguranca-CQ_ts076.jpg",
+    "src": "resources/js/assets/areas/SLIDERS_Seguranca.jpg"
   },
   "resources/js/assets/areas/SLIDERS_SistemasEnergia.jpg": {
     "file": "assets/SLIDERS_SistemasEnergia-BwCXLG4x.jpg",
@@ -133,7 +133,7 @@
     "src": "resources/js/assets/senai-pro-banner.jpg"
   },
   "resources/js/main.tsx": {
-    "file": "assets/main-ClQqrSqO.js",
+    "file": "assets/main-Bd3oJeK5.js",
     "name": "main",
     "src": "resources/js/main.tsx",
     "isEntry": true,
@@ -152,8 +152,8 @@
       "assets/map-thumbnail-DACj-75e.jpg",
       "assets/contato-CNWiK1cJ.jpg",
       "assets/cursos-alimenticia-banner-82F0nAJh.jpg",
-      "assets/SLIDERS_ProduçãoIndustrial-CfqHo4gL.jpg",
-      "assets/SLIDERS_Segurança-CQ_ts076.jpg",
+      "assets/SLIDERS_ProducaoIndustrial-CfqHo4gL.jpg",
+      "assets/SLIDERS_Seguranca-CQ_ts076.jpg",
       "assets/SLIDERS_SistemasEnergia-BwCXLG4x.jpg",
       "assets/trabalhadores-B7zJ1hu9.png",
       "assets/eletronica-CSjb0Bc2.jpg",
